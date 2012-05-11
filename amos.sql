@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.1.61, for debian-linux-gnu (i486)
+-- MySQL dump 10.13  Distrib 5.5.22, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: amos
 -- ------------------------------------------------------
--- Server version	5.1.61-0ubuntu0.10.04.1
+-- Server version	5.5.22-0ubuntu1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -31,7 +31,7 @@ CREATE TABLE `attendees` (
   `phone` varchar(20) NOT NULL,
   `notes` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,33 +40,35 @@ CREATE TABLE `attendees` (
 
 LOCK TABLES `attendees` WRITE;
 /*!40000 ALTER TABLE `attendees` DISABLE KEYS */;
+INSERT INTO `attendees` VALUES (1,'Lakin','Kurt',1,'','',''),(2,'test','person',1,'','',''),(3,'new','person',1,'','',''),(4,'new','person',1,'','','');
 /*!40000 ALTER TABLE `attendees` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `attendeesMeetings`
+-- Table structure for table `attendees_meetings`
 --
 
-DROP TABLE IF EXISTS `attendeesMeetings`;
+DROP TABLE IF EXISTS `attendees_meetings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `attendeesMeetings` (
+CREATE TABLE `attendees_meetings` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `attendee_id` int(10) unsigned NOT NULL,
   `meeting_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `attendee_id` (`attendee_id`),
   KEY `meeting_id` (`meeting_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `attendeesMeetings`
+-- Dumping data for table `attendees_meetings`
 --
 
-LOCK TABLES `attendeesMeetings` WRITE;
-/*!40000 ALTER TABLE `attendeesMeetings` DISABLE KEYS */;
-/*!40000 ALTER TABLE `attendeesMeetings` ENABLE KEYS */;
+LOCK TABLES `attendees_meetings` WRITE;
+/*!40000 ALTER TABLE `attendees_meetings` DISABLE KEYS */;
+INSERT INTO `attendees_meetings` VALUES (2,2,1),(4,4,1),(9,1,1);
+/*!40000 ALTER TABLE `attendees_meetings` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -80,7 +82,7 @@ CREATE TABLE `institutions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,6 +91,7 @@ CREATE TABLE `institutions` (
 
 LOCK TABLES `institutions` WRITE;
 /*!40000 ALTER TABLE `institutions` DISABLE KEYS */;
+INSERT INTO `institutions` VALUES (1,'PlymouthUCC');
 /*!40000 ALTER TABLE `institutions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,6 +120,32 @@ LOCK TABLES `issues` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `issues_meetings`
+--
+
+DROP TABLE IF EXISTS `issues_meetings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `issues_meetings` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `issue_id` int(10) unsigned NOT NULL,
+  `meeting_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `issue_id` (`issue_id`),
+  KEY `meeting_id` (`meeting_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `issues_meetings`
+--
+
+LOCK TABLES `issues_meetings` WRITE;
+/*!40000 ALTER TABLE `issues_meetings` DISABLE KEYS */;
+/*!40000 ALTER TABLE `issues_meetings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `meetings`
 --
 
@@ -130,7 +159,7 @@ CREATE TABLE `meetings` (
   `facilitator` varchar(40) NOT NULL,
   `notes` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,6 +168,7 @@ CREATE TABLE `meetings` (
 
 LOCK TABLES `meetings` WRITE;
 /*!40000 ALTER TABLE `meetings` DISABLE KEYS */;
+INSERT INTO `meetings` VALUES (1,'airplane','2012-04-18','me','test #1\r\nbored as hell');
 /*!40000 ALTER TABLE `meetings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,4 +204,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-04-18 18:36:31
+-- Dump completed on 2012-05-11 16:07:42
