@@ -19,6 +19,53 @@ class IssuesController extends AppController {
 	}
 
 /**
+ * popup method
+ *
+ */
+  public function popup($id=null) {
+		if ($this->request->is('post')) {
+			if(!empty($this->request->data['Issue']['topicName'])) {
+				//user has entered a topic
+				$this->request->data['Issue']['topic_id']=$this->Issue->Topic->checkadd($this->request->data['Issue']['topicName']);
+			}//endif
+			unset($this->request->data['Issue']['topicName']);
+//debug($this->request->data);exit;
+			$this->Issue->create();
+			$this->request->data['Meeting']=array('Meeting'=>array($id));
+			if ($this->Issue->save($this->request->data)) {
+				$this->Session->setFlash(__('The issue has been saved'));
+				$this->set('return',true);
+			} else {
+				$this->Session->setFlash(__('The issue could not be saved. Please, try again.'));
+				$this->set('retry',true);
+			}//*/
+		}//endif
+		//find what issues are already with this meeting
+		$issuesList=$this->Issue->IssuesMeeting->find('list',array('fields'=>'issue_id','conditions'=>array('meeting_id'=>$id)));
+//debug($issuesList);exit;
+		$this->Issue->recursive = 0;
+		$this->set('issues', $this->paginate(array('not'=>array('Issue.id'=>$issuesList))));
+		$topics = $this->Issue->Topic->find('list');
+//		$meetings = $this->Issue->Meeting->find('list');
+//		$this->set(compact('topics', 'meetings'));
+		$this->set(compact('topics'));
+		$this->set('meeting_id',$id);
+  }
+
+  public function additom($issue_id=null, $meeting_id=null) {
+	 //add issue to meeting
+	 $this->Issue->IssuesMeeting->create();
+	 $this->Issue->IssuesMeeting->save(array('issue_id'=>$issue_id,'meeting_id'=>$meeting_id));
+  }
+
+  public function removefrommeeting($id = null) {
+	 $this->Issue->IssuesMeeting->id=$id;
+	 $this->Issue->IssuesMeeting->delete();
+	 $this->redirect($this->referer());
+  }
+
+
+/**
  * view method
  *
  * @param string $id

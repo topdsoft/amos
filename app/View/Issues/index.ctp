@@ -3,18 +3,20 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
-			<th><?php echo $this->Paginator->sort('description');?></th>
 			<th><?php echo $this->Paginator->sort('topic_id');?></th>
-			<th class="actions"><?php echo __('Actions');?></th>
+			<th><?php echo $this->Paginator->sort('description');?></th>
+			<th><?php echo $this->Paginator->sort('meetings');?></th>
+			<th></th>
 	</tr>
 	<?php
 	foreach ($issues as $issue): ?>
 	<tr>
 		<td><?php echo h($issue['Issue']['id']); ?>&nbsp;</td>
-		<td><?php echo h($issue['Issue']['description']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($issue['Topic']['name'], array('controller' => 'topics', 'action' => 'view', $issue['Topic']['id'])); ?>
 		</td>
+		<td><?php echo nl2br($issue['Issue']['description']); ?>&nbsp;</td>
+		<td><?php echo h($issue['Issue']['meetings']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $issue['Issue']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $issue['Issue']['id'])); ?>

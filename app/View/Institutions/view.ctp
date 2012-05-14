@@ -25,43 +25,36 @@
 	</ul>
 </div>
 <div class="related">
-	<h3><?php echo __('Related Attendees');?></h3>
 	<?php if (!empty($institution['Attendee'])):?>
+	<h3><?php echo __('Attendees');?></h3>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('LastName'); ?></th>
 		<th><?php echo __('FirstName'); ?></th>
 		<th><?php echo __('Institution Id'); ?></th>
 		<th><?php echo __('Email'); ?></th>
 		<th><?php echo __('Phone'); ?></th>
-		<th><?php echo __('Notes'); ?></th>
-		<th class="actions"><?php echo __('Actions');?></th>
+		<th><?php echo __('Attended'); ?></th>
+		<th></th>
 	</tr>
 	<?php
 		$i = 0;
 		foreach ($institution['Attendee'] as $attendee): ?>
 		<tr>
-			<td><?php echo $attendee['id'];?></td>
 			<td><?php echo $attendee['lastName'];?></td>
 			<td><?php echo $attendee['firstName'];?></td>
 			<td><?php echo $attendee['institution_id'];?></td>
 			<td><?php echo $attendee['email'];?></td>
 			<td><?php echo $attendee['phone'];?></td>
-			<td><?php echo $attendee['notes'];?></td>
+			<td><?php echo $attendee['numAttended'];?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'attendees', 'action' => 'view', $attendee['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'attendees', 'action' => 'edit', $attendee['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'attendees', 'action' => 'delete', $attendee['id']), null, __('Are you sure you want to delete # %s?', $attendee['id'])); ?>
+				<?php //echo $this->Form->postLink(__('Delete'), array('controller' => 'attendees', 'action' => 'delete', $attendee['id']), null, __('Are you sure you want to delete # %s?', $attendee['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
 	</table>
 <?php endif; ?>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Attendee'), array('controller' => 'attendees', 'action' => 'add'));?> </li>
-		</ul>
-	</div>
 </div>

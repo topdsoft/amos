@@ -6,8 +6,9 @@
 			<th><?php echo $this->Paginator->sort('location');?></th>
 			<th><?php echo $this->Paginator->sort('date');?></th>
 			<th><?php echo $this->Paginator->sort('facilitator');?></th>
-			<th><?php echo $this->Paginator->sort('notes');?></th>
-			<th class="actions"><?php echo __('Actions');?></th>
+			<th><?php echo $this->Paginator->sort('numAttendees');?></th>
+			<th><?php echo $this->Paginator->sort('numIssues');?></th>
+			<th></th>
 	</tr>
 	<?php
 	foreach ($meetings as $meeting): ?>
@@ -16,7 +17,8 @@
 		<td><?php echo h($meeting['Meeting']['location']); ?>&nbsp;</td>
 		<td><?php echo h($meeting['Meeting']['date']); ?>&nbsp;</td>
 		<td><?php echo h($meeting['Meeting']['facilitator']); ?>&nbsp;</td>
-		<td><?php echo h($meeting['Meeting']['notes']); ?>&nbsp;</td>
+		<td><?php echo h($meeting['Meeting']['numAttendees']); ?>&nbsp;</td>
+		<td><?php echo h($meeting['Meeting']['numIssues']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $meeting['Meeting']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $meeting['Meeting']['id'])); ?>

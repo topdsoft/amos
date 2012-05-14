@@ -8,8 +8,8 @@
 			<th><?php echo $this->Paginator->sort('institution_id');?></th>
 			<th><?php echo $this->Paginator->sort('email');?></th>
 			<th><?php echo $this->Paginator->sort('phone');?></th>
-			<th><?php echo $this->Paginator->sort('notes');?></th>
-			<th class="actions"><?php echo __('Actions');?></th>
+			<th><?php echo $this->Paginator->sort('numAttended');?></th>
+			<th></th>
 	</tr>
 	<?php
 	foreach ($attendees as $attendee): ?>
@@ -22,7 +22,7 @@
 		</td>
 		<td><?php echo h($attendee['Attendee']['email']); ?>&nbsp;</td>
 		<td><?php echo h($attendee['Attendee']['phone']); ?>&nbsp;</td>
-		<td><?php echo h($attendee['Attendee']['notes']); ?>&nbsp;</td>
+		<td><?php echo h($attendee['Attendee']['numAttended']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $attendee['Attendee']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $attendee['Attendee']['id'])); ?>

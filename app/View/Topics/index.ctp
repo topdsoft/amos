@@ -4,13 +4,15 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
-			<th class="actions"><?php echo __('Actions');?></th>
+			<th><?php echo $this->Paginator->sort('issues');?></th>
+			<th></th>
 	</tr>
 	<?php
 	foreach ($topics as $topic): ?>
 	<tr>
 		<td><?php echo h($topic['Topic']['id']); ?>&nbsp;</td>
 		<td><?php echo h($topic['Topic']['name']); ?>&nbsp;</td>
+		<td><?php echo h($topic['Topic']['issues']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $topic['Topic']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $topic['Topic']['id'])); ?>

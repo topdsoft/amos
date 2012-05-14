@@ -5,7 +5,7 @@
 	<?php
 		echo $this->Form->input('description');
 		echo $this->Form->input('topic_id');
-		echo $this->Form->input('Meeting');
+//		echo $this->Form->input('Meeting');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit'));?>

@@ -28,6 +28,7 @@
 			 echo '<td>'.$institutions[$a['institution_id']].'</td>';
 			 echo '<td>'.$a['numAttended'].'</td>';
 			 echo '<td class="actions">';
+			 echo $this->Html->link(__('Details'), array('controller'=>'attendees','action' => 'view', $a['id']));
 			 echo $this->Html->link(__('Remove'), array('controller'=>'attendees','action' => 'removefrommeeting', $a['AttendeesMeeting']['id']));
 			 echo '</td>';
 			 echo '</tr>';
@@ -36,13 +37,20 @@
 	</table>
 	
 	<h3>Issues</h3>
+	<a href="#" onclick="window.open('<?php echo $this->Html->url(array('controller'=>'issues','action'=>'popup',$meeting['Meeting']['id'])); ?>',
+	'popup','width=500,height=600,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0');
+	return false">Add Issue</a>
 	<table>
 		<tr><th>Topic</th><th>Description</th><th></th></tr>
 		<?php
 		  foreach ($meeting['Issue'] as $i) {
 			 echo '<tr>';
-			 echo '<td>'.$i['firstName'].'</tr>';
-			 echo '<td>'.$i['lastName'].'</tr>';
+			 echo '<td>'.$topics[$i['topic_id']].'</td>';
+			 echo '<td>'.nl2br($i['description']).'</td>';
+			 echo '<td class="actions">';
+			 echo $this->Html->link(__('Details'), array('controller'=>'issues','action' => 'view', $i['id']));
+			 echo $this->Html->link(__('Remove'), array('controller'=>'issues','action' => 'removefrommeeting', $i['IssuesMeeting']['id']));
+			 echo '</td>';
 			 echo '</tr>';
 		  }
 		?>

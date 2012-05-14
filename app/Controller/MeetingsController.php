@@ -26,6 +26,7 @@ class MeetingsController extends AppController {
  */
 	public function view($id = null) {
 		$this->Meeting->id = $id;
+		$this->Meeting->recursive = 2;
 		if (!$this->Meeting->exists()) {
 			throw new NotFoundException(__('Invalid meeting'));
 		}
@@ -75,8 +76,9 @@ class MeetingsController extends AppController {
 		}
 		$attendees = $this->Meeting->Attendee->find('list');
 		$issues = $this->Meeting->Issue->find('list');
+		$topics = $this->Meeting->Issue->Topic->find('list');
 		$institutions= $this->Meeting->Attendee->Institution->find('list');
-		$this->set(compact('attendees', 'issues', 'institutions'));
+		$this->set(compact('attendees', 'issues', 'topics','institutions'));
 		$this->set('meeting',$this->Meeting->read(null,$id));
 	}
 

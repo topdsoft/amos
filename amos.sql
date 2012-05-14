@@ -31,7 +31,7 @@ CREATE TABLE `attendees` (
   `phone` varchar(20) NOT NULL,
   `notes` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `attendees` (
 
 LOCK TABLES `attendees` WRITE;
 /*!40000 ALTER TABLE `attendees` DISABLE KEYS */;
-INSERT INTO `attendees` VALUES (1,'Lakin','Kurt',1,'','',''),(2,'test','person',1,'','',''),(3,'new','person',1,'','',''),(4,'new','person',1,'','','');
+INSERT INTO `attendees` VALUES (1,'Lakin','Kurt',1,'','',''),(2,'test','person',1,'','',''),(3,'new','person',1,'','',''),(5,'Person','Another',1,'','','');
 /*!40000 ALTER TABLE `attendees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +58,7 @@ CREATE TABLE `attendees_meetings` (
   PRIMARY KEY (`id`),
   KEY `attendee_id` (`attendee_id`),
   KEY `meeting_id` (`meeting_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +67,7 @@ CREATE TABLE `attendees_meetings` (
 
 LOCK TABLES `attendees_meetings` WRITE;
 /*!40000 ALTER TABLE `attendees_meetings` DISABLE KEYS */;
-INSERT INTO `attendees_meetings` VALUES (2,2,1),(4,4,1),(9,1,1);
+INSERT INTO `attendees_meetings` VALUES (2,2,1),(9,1,1),(10,3,1),(11,1,2),(12,5,2),(13,1,3);
 /*!40000 ALTER TABLE `attendees_meetings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,7 +107,7 @@ CREATE TABLE `issues` (
   `description` text NOT NULL,
   `topic_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,6 +116,7 @@ CREATE TABLE `issues` (
 
 LOCK TABLES `issues` WRITE;
 /*!40000 ALTER TABLE `issues` DISABLE KEYS */;
+INSERT INTO `issues` VALUES (1,'first issue\r\nline 2\r\nline 3',1),(2,'t1 issue#2',1),(3,'t2 issue 1',2);
 /*!40000 ALTER TABLE `issues` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -133,7 +134,7 @@ CREATE TABLE `issues_meetings` (
   PRIMARY KEY (`id`),
   KEY `issue_id` (`issue_id`),
   KEY `meeting_id` (`meeting_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,6 +143,7 @@ CREATE TABLE `issues_meetings` (
 
 LOCK TABLES `issues_meetings` WRITE;
 /*!40000 ALTER TABLE `issues_meetings` DISABLE KEYS */;
+INSERT INTO `issues_meetings` VALUES (1,1,1),(4,2,1),(5,3,1),(6,2,2),(7,2,3);
 /*!40000 ALTER TABLE `issues_meetings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,7 +161,7 @@ CREATE TABLE `meetings` (
   `facilitator` varchar(40) NOT NULL,
   `notes` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,7 +170,7 @@ CREATE TABLE `meetings` (
 
 LOCK TABLES `meetings` WRITE;
 /*!40000 ALTER TABLE `meetings` DISABLE KEYS */;
-INSERT INTO `meetings` VALUES (1,'airplane','2012-04-18','me','test #1\r\nbored as hell');
+INSERT INTO `meetings` VALUES (1,'airplane','2012-04-18','me','test #1\r\nbored as hell'),(2,'meeting#2','2012-05-14','me','test#2'),(3,'my office','2012-05-14','me','another test\r\n...');
 /*!40000 ALTER TABLE `meetings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,7 +185,7 @@ CREATE TABLE `topics` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -192,6 +194,7 @@ CREATE TABLE `topics` (
 
 LOCK TABLES `topics` WRITE;
 /*!40000 ALTER TABLE `topics` DISABLE KEYS */;
+INSERT INTO `topics` VALUES (1,'topic1'),(2,'topic2');
 /*!40000 ALTER TABLE `topics` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -204,4 +207,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-11 16:07:42
+-- Dump completed on 2012-05-14 14:38:55

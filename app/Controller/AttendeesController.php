@@ -34,9 +34,11 @@ class AttendeesController extends AppController {
 				$this->Session->setFlash(__('The attendee could not be saved. Please, try again.'));
 				$this->set('retry',true);
 			}
-		}
+		}//endif
+		//find what attendees are already in this meeting
+		$attendeesList=$this->Attendee->AttendeesMeeting->find('list',array('fields'=>'attendee_id','conditions'=>array('meeting_id'=>$id)));
 		$this->Attendee->recursive = 0;
-		$this->set('attendees', $this->paginate());
+		$this->set('attendees', $this->paginate(array('not'=>array('Attendee.id'=>$attendeesList))));
 		$institutions = $this->Attendee->Institution->find('list');
 //		$meetings = $this->Attendee->Meeting->find('list');
 //		$this->set(compact('institutions', 'meetings'));

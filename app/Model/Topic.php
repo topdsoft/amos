@@ -12,6 +12,9 @@ class Topic extends AppModel {
  * @var string
  */
 	public $displayField = 'name';
+	public $virtualFields = array(
+		'issues'=>'select count(*) from issues where topic_id=Topic.id',
+	);
 /**
  * Validation rules
  *
@@ -52,5 +55,26 @@ class Topic extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+
+/**
+ * checkadd method
+ * @property topicname $name
+ * if $name is not allready a topic it will be added and the new id will be returned
+ * if it is existing the id will be returned
+ * if adding name fails returns null
+ */
+
+	public function checkadd($name) {
+		$topic=$this->find('first',array('conditions'=>array('Topic.name'=>$name)));
+		$id=null;
+		if($topic) {
+			//topic found
+			$id=$topic['Topic']['id'];
+		} else {
+			//add topic
+			if($this->save(array('id'=>null,'name'=>$name))) $id=$this->getInsertId();
+		}//endif
+		return $id;
+	}
 
 }

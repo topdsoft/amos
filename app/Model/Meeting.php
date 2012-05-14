@@ -7,6 +7,10 @@ App::uses('AppModel', 'Model');
  * @property Issue $Issue
  */
 class Meeting extends AppModel {
+  var $virtualFields=array(
+	 'numAttendees'=>'select count(*) from attendees_meetings where attendees_meetings.meeting_id=Meeting.id',
+	 'numIssues'=>'select count(*) from issues_meetings where issues_meetings.meeting_id=Meeting.id'
+  );
 /**
  * Validation rules
  *

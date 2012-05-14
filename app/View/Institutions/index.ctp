@@ -4,13 +4,17 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
-			<th class="actions"><?php echo __('Actions');?></th>
+			<th><?php echo $this->Paginator->sort('attendees');?></th>
+			<th><?php echo $this->Paginator->sort('total','Total Attended');?></th>
+			<th></th>
 	</tr>
 	<?php
 	foreach ($institutions as $institution): ?>
 	<tr>
 		<td><?php echo h($institution['Institution']['id']); ?>&nbsp;</td>
 		<td><?php echo h($institution['Institution']['name']); ?>&nbsp;</td>
+		<td><?php echo h($institution['Institution']['attendees']); ?>&nbsp;</td>
+		<td><?php echo h($institution['Institution']['total']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $institution['Institution']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $institution['Institution']['id'])); ?>

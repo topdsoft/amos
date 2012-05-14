@@ -12,6 +12,11 @@ class Institution extends AppModel {
  * @var string
  */
 	public $displayField = 'name';
+	
+	public $virtualFields=array(
+		'attendees'=>'select count(*) from attendees where institution_id=Institution.id',
+		'total'=>'select count(*) from attendees_meetings where attendees_meetings.attendee_id in (select attendee_id from attendees where institution_id=Institution.id)',
+	);
 /**
  * Validation rules
  *
