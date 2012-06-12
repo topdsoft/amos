@@ -29,9 +29,8 @@
 	<h3><?php echo __('Attendees');?></h3>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php echo __('LastName'); ?></th>
-		<th><?php echo __('FirstName'); ?></th>
-		<th><?php echo __('Institution Id'); ?></th>
+		<th><?php echo __('Last Name'); ?></th>
+		<th><?php echo __('First Name'); ?></th>
 		<th><?php echo __('Email'); ?></th>
 		<th><?php echo __('Phone'); ?></th>
 		<th><?php echo __('Attended'); ?></th>
@@ -43,7 +42,6 @@
 		<tr>
 			<td><?php echo $attendee['lastName'];?></td>
 			<td><?php echo $attendee['firstName'];?></td>
-			<td><?php echo $attendee['institution_id'];?></td>
 			<td><?php echo $attendee['email'];?></td>
 			<td><?php echo $attendee['phone'];?></td>
 			<td><?php echo $attendee['numAttended'];?></td>

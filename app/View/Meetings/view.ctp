@@ -88,7 +88,7 @@
 		$i = 0;
 		foreach ($meeting['Issue'] as $issue): ?>
 		<tr>
-			<td><?php echo $issue['Topic']['name'];?></td>
+			<td><?php echo $this->Html->link( $issue['Topic']['name'],array('controller'=>'topics','action'=>'view',$issue['Topic']['id']));?></td>
 			<td><?php echo nl2br($issue['description']);?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'issues', 'action' => 'view', $issue['id'])); ?>

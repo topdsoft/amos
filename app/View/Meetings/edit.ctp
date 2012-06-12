@@ -19,7 +19,7 @@
 	'popup','width=500,height=600,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0');
 	return false">Add Attendee</a>
 	<table>
-		<tr><th>Last Name</th><th>First Name</th><th>Instution</th><th>Num Attended</th><th></th></tr>
+		<tr><th>Last Name</th><th>First Name</th><th>Institution</th><th>Num Attended</th><th></th></tr>
 		<?php
 		  foreach ($meeting['Attendee'] as $a) {
 			 echo '<tr>';

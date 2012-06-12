@@ -30,6 +30,7 @@
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Description'); ?></th>
+		<th><?php echo __('Occurrences'); ?></th>
 		<th></th>
 	</tr>
 	<?php
@@ -37,6 +38,7 @@
 		foreach ($topic['Issue'] as $issue): ?>
 		<tr>
 			<td><?php echo nl2br($issue['description']);?></td>
+			<td><?php echo $issue['meetings'];?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'issues', 'action' => 'view', $issue['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'issues', 'action' => 'edit', $issue['id'])); ?>

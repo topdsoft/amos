@@ -39,7 +39,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>AMOS</h1>
+			<h1>AMOS House Meeting Database</h1>
 		</div>
 		<div id="content">
 

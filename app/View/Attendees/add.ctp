@@ -9,7 +9,7 @@
 		echo $this->Form->input('email');
 		echo $this->Form->input('phone');
 		echo $this->Form->input('notes');
-		echo $this->Form->input('Meeting');
+//		echo $this->Form->input('Meeting');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit'));?>
