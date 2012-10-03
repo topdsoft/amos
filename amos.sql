@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.22, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.1.63, for debian-linux-gnu (i486)
 --
 -- Host: localhost    Database: amos
 -- ------------------------------------------------------
--- Server version	5.5.22-0ubuntu1
+-- Server version	5.1.63-0ubuntu0.10.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -31,7 +31,7 @@ CREATE TABLE `attendees` (
   `phone` varchar(20) NOT NULL,
   `notes` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `attendees` (
 
 LOCK TABLES `attendees` WRITE;
 /*!40000 ALTER TABLE `attendees` DISABLE KEYS */;
-INSERT INTO `attendees` VALUES (1,'Lakin','Kurt',1,'','',''),(2,'test','person',1,'','',''),(3,'new','person',1,'','',''),(5,'Person','Another',1,'','','');
+INSERT INTO `attendees` VALUES (1,'Lakin','Kurt',1,'','',''),(5,'Campbell','Jan',1,'','',''),(6,'Heles ','Bob',2,'b.heles@mchsi.com ','515-770-7871',''),(7,'Hessburg','Art',2,'ahessburg@live.com ','515-1218',''),(8,'Segura','Bobbi ',2,'b.segura@mchsi.com ','515-240-7883',''),(9,'Segura','Dan ',2,'','',''),(10,'Smith','Dan ',2,'mcsmith50311@gmail.com ','515-279-3384',''),(11,'Conover','Ann ',2,'','',''),(12,'Hoekman','Dixie ',2,'','',''),(13,'Miller','Barb ',2,'','',''),(14,'Parkinson','Jan ',2,'','',''),(15,'Struit','Jean ',2,'','','');
 /*!40000 ALTER TABLE `attendees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +58,7 @@ CREATE TABLE `attendees_meetings` (
   PRIMARY KEY (`id`),
   KEY `attendee_id` (`attendee_id`),
   KEY `meeting_id` (`meeting_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +67,7 @@ CREATE TABLE `attendees_meetings` (
 
 LOCK TABLES `attendees_meetings` WRITE;
 /*!40000 ALTER TABLE `attendees_meetings` DISABLE KEYS */;
-INSERT INTO `attendees_meetings` VALUES (2,2,1),(9,1,1),(10,3,1),(11,1,2),(12,5,2),(13,1,3);
+INSERT INTO `attendees_meetings` VALUES (12,6,3),(13,7,3),(14,8,3),(15,9,3),(16,10,3),(17,11,4),(18,12,4),(19,13,4),(20,14,4),(21,15,4);
 /*!40000 ALTER TABLE `attendees_meetings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,7 +82,7 @@ CREATE TABLE `institutions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +91,7 @@ CREATE TABLE `institutions` (
 
 LOCK TABLES `institutions` WRITE;
 /*!40000 ALTER TABLE `institutions` DISABLE KEYS */;
-INSERT INTO `institutions` VALUES (1,'PlymouthUCC');
+INSERT INTO `institutions` VALUES (1,'PlymouthUCC'),(2,'unknown');
 /*!40000 ALTER TABLE `institutions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,7 +107,7 @@ CREATE TABLE `issues` (
   `description` text NOT NULL,
   `topic_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,7 +116,7 @@ CREATE TABLE `issues` (
 
 LOCK TABLES `issues` WRITE;
 /*!40000 ALTER TABLE `issues` DISABLE KEYS */;
-INSERT INTO `issues` VALUES (1,'first issue\r\nline 2\r\nline 3',1),(2,'t1 issue#2',1),(3,'t2 issue 1',2);
+INSERT INTO `issues` VALUES (5,'Healthy habits\r\n',4),(6,'Pre-existing conditions/lack of coverage\r\n',5),(7,'Chemical Treatment lack of parity\r\n',6),(8,'Bullying',7),(9,'Racial Stereotyping',8),(10,'Disrespect of teachers in the classroom',7);
 /*!40000 ALTER TABLE `issues` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,7 +134,7 @@ CREATE TABLE `issues_meetings` (
   PRIMARY KEY (`id`),
   KEY `issue_id` (`issue_id`),
   KEY `meeting_id` (`meeting_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,7 +143,7 @@ CREATE TABLE `issues_meetings` (
 
 LOCK TABLES `issues_meetings` WRITE;
 /*!40000 ALTER TABLE `issues_meetings` DISABLE KEYS */;
-INSERT INTO `issues_meetings` VALUES (1,1,1),(4,2,1),(5,3,1),(6,2,2),(7,2,3);
+INSERT INTO `issues_meetings` VALUES (5,5,3),(6,6,3),(7,7,3),(8,8,5),(9,9,5),(10,10,5);
 /*!40000 ALTER TABLE `issues_meetings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,7 +161,7 @@ CREATE TABLE `meetings` (
   `facilitator` varchar(40) NOT NULL,
   `notes` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,7 +170,7 @@ CREATE TABLE `meetings` (
 
 LOCK TABLES `meetings` WRITE;
 /*!40000 ALTER TABLE `meetings` DISABLE KEYS */;
-INSERT INTO `meetings` VALUES (1,'airplane','2012-04-18','me','test #1\r\nbored as hell'),(2,'meeting#2','2012-05-14','me','test#2'),(3,'my office','2012-05-14','me','another test\r\n...');
+INSERT INTO `meetings` VALUES (3,'none','2012-02-26','Jackie Seymour',''),(4,'unknown','2012-03-06','Jan Campbell',''),(5,'none','2012-02-23','Jackie Seymour','Hosted by Anthony Livolsi/Shana Johnson');
 /*!40000 ALTER TABLE `meetings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +185,7 @@ CREATE TABLE `topics` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,7 +194,7 @@ CREATE TABLE `topics` (
 
 LOCK TABLES `topics` WRITE;
 /*!40000 ALTER TABLE `topics` DISABLE KEYS */;
-INSERT INTO `topics` VALUES (1,'topic1'),(2,'topic2');
+INSERT INTO `topics` VALUES (4,'Nutrition '),(5,'Health Insurance '),(6,'Healthcare'),(7,'Education'),(8,'Racial Stereotyping');
 /*!40000 ALTER TABLE `topics` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -207,4 +207,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-14 14:38:55
+-- Dump completed on 2012-10-03  9:56:50
