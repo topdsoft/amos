@@ -65,6 +65,21 @@ class Issue extends AppModel {
 			'finderQuery' => '',
 			'deleteQuery' => '',
 			'insertQuery' => ''
+		),
+		'Attendee' => array(
+			'className' => 'Attendee',
+			'joinTable' => 'attendees_issues',
+			'foreignKey' => 'issue_id',
+			'associationForeignKey' => 'attendee_id',
+			'unique' => 'keepExisting',
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
 		)
 	);
 

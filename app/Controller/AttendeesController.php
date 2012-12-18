@@ -70,6 +70,8 @@ class AttendeesController extends AppController {
 			throw new NotFoundException(__('Invalid attendee'));
 		}
 		$this->set('attendee', $this->Attendee->read(null, $id));
+		$attendees=$this->Attendee->find('list');
+		$this->set(compact('attendees'));
 	}
 
 /**

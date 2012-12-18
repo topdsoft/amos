@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.1.63, for debian-linux-gnu (i486)
+-- MySQL dump 10.13  Distrib 5.5.28, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: amos
 -- ------------------------------------------------------
--- Server version	5.1.63-0ubuntu0.10.04.1
+-- Server version	5.5.28-0ubuntu0.12.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -42,6 +42,34 @@ LOCK TABLES `attendees` WRITE;
 /*!40000 ALTER TABLE `attendees` DISABLE KEYS */;
 INSERT INTO `attendees` VALUES (1,'Lakin','Kurt',1,'','',''),(5,'Campbell','Jan',1,'','',''),(6,'Heles ','Bob',2,'b.heles@mchsi.com ','515-770-7871',''),(7,'Hessburg','Art',2,'ahessburg@live.com ','515-1218',''),(8,'Segura','Bobbi ',2,'b.segura@mchsi.com ','515-240-7883',''),(9,'Segura','Dan ',2,'','',''),(10,'Smith','Dan ',2,'mcsmith50311@gmail.com ','515-279-3384',''),(11,'Conover','Ann ',2,'','',''),(12,'Hoekman','Dixie ',2,'','',''),(13,'Miller','Barb ',2,'','',''),(14,'Parkinson','Jan ',2,'','',''),(15,'Struit','Jean ',2,'','','');
 /*!40000 ALTER TABLE `attendees` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `attendees_issues`
+--
+
+DROP TABLE IF EXISTS `attendees_issues`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `attendees_issues` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `attendee_id` int(10) unsigned NOT NULL,
+  `issue_id` int(10) unsigned NOT NULL,
+  `rank` smallint(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `attendee_id` (`attendee_id`),
+  KEY `issue_id` (`issue_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `attendees_issues`
+--
+
+LOCK TABLES `attendees_issues` WRITE;
+/*!40000 ALTER TABLE `attendees_issues` DISABLE KEYS */;
+INSERT INTO `attendees_issues` VALUES (8,1,5,0),(9,1,6,0),(10,1,7,0),(11,1,8,0),(12,1,9,0),(13,1,10,0);
+/*!40000 ALTER TABLE `attendees_issues` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -175,6 +203,33 @@ INSERT INTO `meetings` VALUES (3,'none','2012-02-26','Jackie Seymour',''),(4,'un
 UNLOCK TABLES;
 
 --
+-- Table structure for table `oneonones`
+--
+
+DROP TABLE IF EXISTS `oneonones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `oneonones` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `attendee1_id` int(10) unsigned NOT NULL,
+  `attendee2_id` int(10) unsigned NOT NULL,
+  `date` date NOT NULL,
+  `notes` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `oneonones`
+--
+
+LOCK TABLES `oneonones` WRITE;
+/*!40000 ALTER TABLE `oneonones` DISABLE KEYS */;
+INSERT INTO `oneonones` VALUES (1,5,1,'2012-12-18','testing interface\r\nDELETE THIS');
+/*!40000 ALTER TABLE `oneonones` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `topics`
 --
 
@@ -207,4 +262,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-10-03  9:56:50
+-- Dump completed on 2012-12-18 13:31:16

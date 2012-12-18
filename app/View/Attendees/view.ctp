@@ -51,6 +51,7 @@
 		<li><?php echo $this->Html->link(__('New Meeting'), array('controller' => 'meetings', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+<?php //debug($attendee);?>
 <div class="related">
 	<?php if (!empty($attendee['Meeting'])):?>
 	<h3><?php echo __('Meetings Attended');?></h3>
@@ -79,5 +80,84 @@
 	<?php endforeach; ?>
 	</table>
 <?php endif; ?>
+</div>
 
+<div class="related">
+	<?php if (!empty($attendee['Issue'])):?>
+	<h3><?php echo __('Issues '.$attendee['Attendee']['name'].' Brought up on One on Ones');?></h3>
+	<table cellpadding = "0" cellspacing = "0">
+	<tr>
+		<th><?php echo __('Issue'); ?></th>
+		<th><?php echo __('Interest Level'); ?></th>
+		<th></th>
+	</tr>
+	<?php
+		$i = 0;
+		foreach ($attendee['Issue'] as $i): ?>
+		<tr>
+			<td><?php echo $this->Html->link($i['description'],array('controller'=>'issues','action'=>'view',$i['id']));?></td>
+			<td><?php echo $i['AttendeesIssue']['rank'];?></td>
+			<td class="actions">
+				<?php //echo $this->Html->link(__('View'), array('controller' => 'oneonones', 'action' => 'view', $i['id'])); ?>
+				<?php //echo $this->Html->link(__('Edit'), array('controller' => 'meetings', 'action' => 'edit', $meeting['id'])); ?>
+				<?php //echo $this->Form->postLink(__('Delete'), array('controller' => 'meetings', 'action' => 'delete', $meeting['id']), null, __('Are you sure you want to delete # %s?', $meeting['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+<?php endif; ?>
+
+<div class="related">
+	<?php if (!empty($attendee['Interviewer'])):?>
+	<h3><?php echo __('One on Ones where '.$attendee['Attendee']['name'].' was Interviewer');?></h3>
+	<table cellpadding = "0" cellspacing = "0">
+	<tr>
+		<th><?php echo __('Interviewee'); ?></th>
+		<th><?php echo __('Date'); ?></th>
+		<th><?php echo __('Notes'); ?></th>
+		<th></th>
+	</tr>
+	<?php
+		$i = 0;
+		foreach ($attendee['Interviewer'] as $i): ?>
+		<tr>
+			<td><?php echo $this->Html->link($attendees[$i['attendee2_id']],array('controller'=>'attendees','action'=>'view',$i['attendee2_id']));?></td>
+			<td><?php echo $i['date'];?></td>
+			<td><?php echo $i['notes'];?></td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('View'), array('controller' => 'oneonones', 'action' => 'view', $i['id'])); ?>
+				<?php //echo $this->Html->link(__('Edit'), array('controller' => 'meetings', 'action' => 'edit', $meeting['id'])); ?>
+				<?php //echo $this->Form->postLink(__('Delete'), array('controller' => 'meetings', 'action' => 'delete', $meeting['id']), null, __('Are you sure you want to delete # %s?', $meeting['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+<?php endif; ?>
+
+<div class="related">
+	<?php if (!empty($attendee['Interviewee'])):?>
+	<h3><?php echo __('One on Ones where '.$attendee['Attendee']['name'].' was Interviewee');?></h3>
+	<table cellpadding = "0" cellspacing = "0">
+	<tr>
+		<th><?php echo __('Interviewer'); ?></th>
+		<th><?php echo __('Date'); ?></th>
+		<th><?php echo __('Notes'); ?></th>
+		<th></th>
+	</tr>
+	<?php
+		$i = 0;
+		foreach ($attendee['Interviewee'] as $i): ?>
+		<tr>
+			<td><?php echo $this->Html->link($attendees[$i['attendee1_id']],array('controller'=>'attendees','action'=>'view',$i['attendee1_id']));?></td>
+			<td><?php echo $i['date'];?></td>
+			<td><?php echo $i['notes'];?></td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('View'), array('controller' => 'oneonones', 'action' => 'view', $i['id'])); ?>
+				<?php //echo $this->Html->link(__('Edit'), array('controller' => 'meetings', 'action' => 'edit', $meeting['id'])); ?>
+				<?php //echo $this->Form->postLink(__('Delete'), array('controller' => 'meetings', 'action' => 'delete', $meeting['id']), null, __('Are you sure you want to delete # %s?', $meeting['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+<?php endif; ?>
 </div>

@@ -17,7 +17,7 @@ class Meeting extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'location' => array(
+/*		'location' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -26,7 +26,7 @@ class Meeting extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
+		),//*/
 		'date' => array(
 			'date' => array(
 				'rule' => array('date'),

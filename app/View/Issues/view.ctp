@@ -31,9 +31,11 @@
 		<li><?php echo $this->Html->link(__('New Meeting'), array('controller' => 'meetings', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+<?php //debug($issue); ?>
+
 <div class="related">
 	<?php if (!empty($issue['Meeting'])):?>
-	<h3><?php echo __('Meetings');?></h3>
+	<h3><?php echo __('Issue Brought up at following Meetings');?></h3>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
@@ -55,6 +57,31 @@
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'meetings', 'action' => 'view', $meeting['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'meetings', 'action' => 'edit', $meeting['id'])); ?>
+				<?php //echo $this->Form->postLink(__('Delete'), array('controller' => 'meetings', 'action' => 'delete', $meeting['id']), null, __('Are you sure you want to delete # %s?', $meeting['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+<?php endif; ?>
+
+<div class="related">
+	<?php if (!empty($issue['Attendee'])):?>
+	<h3><?php echo __('Issue brought up by following Attendees during One on Ones');?></h3>
+	<table cellpadding = "0" cellspacing = "0">
+	<tr>
+		<th><?php echo __('Attendee'); ?></th>
+		<th><?php echo __('Interest Level'); ?></th>
+		<th></th>
+	</tr>
+	<?php
+		$i = 0;
+		foreach ($issue['Attendee'] as $attendee): ?>
+		<tr>
+			<td><?php echo $this->Html->link($attendee['name'],array('controller'=>'attendees','action'=>'view',$attendee['id']));?></td>
+			<td><?php echo $attendee['AttendeesIssue']['rank'];?></td>
+			<td class="actions">
+				<?php //echo $this->Html->link(__('View 1on1'), array('controller' => 'oneonones', 'action' => 'view', $meeting['id'])); ?>
+				<?php //echo $this->Html->link(__('Edit'), array('controller' => 'meetings', 'action' => 'edit', $meeting['id'])); ?>
 				<?php //echo $this->Form->postLink(__('Delete'), array('controller' => 'meetings', 'action' => 'delete', $meeting['id']), null, __('Are you sure you want to delete # %s?', $meeting['id'])); ?>
 			</td>
 		</tr>
