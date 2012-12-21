@@ -15,6 +15,7 @@ class Topic extends AppModel {
 	public $virtualFields = array(
 		'issues'=>'select count(*) from issues where topic_id=Topic.id',
 	);
+	public $order = array('Topic.name');
 /**
  * Validation rules
  *

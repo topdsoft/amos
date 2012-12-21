@@ -9,7 +9,10 @@ App::uses('AppModel', 'Model');
 class Issue extends AppModel {
 	public $virtualFields=array(
 		'meetings'=>'select count(*) from issues_meetings where issues_meetings.issue_id=Issue.id',
+		'oneonones'=>'select count(*) from attendees_issues where attendees_issues.issue_id=Issue.id'
 	);
+	
+	public $order=array('Topic.name','Issue.description');
 /**
  * Validation rules
  *

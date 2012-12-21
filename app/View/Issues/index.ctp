@@ -6,6 +6,7 @@
 			<th><?php echo $this->Paginator->sort('topic_id');?></th>
 			<th><?php echo $this->Paginator->sort('description');?></th>
 			<th><?php echo $this->Paginator->sort('meetings');?></th>
+			<th><?php echo $this->Paginator->sort('oneonones');?></th>
 			<th></th>
 	</tr>
 	<?php
@@ -17,6 +18,7 @@
 		</td>
 		<td><?php echo nl2br($issue['Issue']['description']); ?>&nbsp;</td>
 		<td><?php echo h($issue['Issue']['meetings']); ?>&nbsp;</td>
+		<td><?php echo h($issue['Issue']['oneonones']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $issue['Issue']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $issue['Issue']['id'])); ?>
@@ -40,13 +42,4 @@
 	?>
 	</div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Issue'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Topics'), array('controller' => 'topics', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Topic'), array('controller' => 'topics', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Meetings'), array('controller' => 'meetings', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Meeting'), array('controller' => 'meetings', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+<?php echo $this->element('menu'); ?>
