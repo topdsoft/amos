@@ -86,13 +86,13 @@ p {
 	color: #fff;
 	padding: 0px 30px;
 }
-#header h1 a {
+#header a {
 	color: #fff;
 	background: #003d4c;
 	font-weight: normal;
 	text-decoration: none;
 }
-#header h1 a:hover {
+#header a:hover {
 	color: #fff;
 	background: #003d4c;
 	text-decoration: underline;

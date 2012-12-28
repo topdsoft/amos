@@ -40,6 +40,7 @@ $cakeDescription = __d('AMOS', 'Plymouth AMOS Group');
 	<div id="container">
 		<div id="header">
 			<h1>Plymouth AMOS</h1>
+			<?php echo $this->Html->link(__('HELP'),array('controller'=>'pages','action'=>'help')) ?>
 		</div>
 		<div id="content">
 
