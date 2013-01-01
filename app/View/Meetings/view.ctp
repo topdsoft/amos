@@ -27,10 +27,36 @@
 			&nbsp;
 		</dd>
 	</dl>
+
+<?php if (!empty($meeting['Issue'])):?>
+<div class="related">
+	<h3><?php echo __('Issues');?></h3>
+	<table cellpadding = "0" cellspacing = "0">
+	<tr>
+		<th><?php echo __('Topic'); ?></th>
+		<th><?php echo __('Issue Description'); ?></th>
+		<th></th>
+	</tr>
+	<?php
+		$i = 0;
+		foreach ($meeting['Issue'] as $issue): ?>
+		<tr>
+			<td><?php echo $this->Html->link( $issue['Topic']['name'],array('controller'=>'topics','action'=>'view',$issue['Topic']['id']));?></td>
+			<td><?php echo nl2br($issue['description']);?></td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('View'), array('controller' => 'issues', 'action' => 'view', $issue['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'issues', 'action' => 'edit', $issue['id'])); ?>
+				<?php //echo $this->Form->postLink(__('Delete'), array('controller' => 'issues', 'action' => 'delete', $issue['id']), null, __('Are you sure you want to delete # %s?', $issue['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+</div>
+<?php endif; ?>
 </div>
 <?php echo $this->element('menu'); ?>
+<?php if (!empty($meeting['Attendee'])):?>
 <div class="related">
-	<?php if (!empty($meeting['Attendee'])):?>
 	<h3><?php echo __('Attendees');?></h3>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
@@ -60,32 +86,6 @@
 		</tr>
 	<?php endforeach; ?>
 	</table>
+</div>
 <?php endif; ?>
 
-</div>
-<div class="related">
-	<?php if (!empty($meeting['Issue'])):?>
-	<h3><?php echo __('Issues');?></h3>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Topic'); ?></th>
-		<th><?php echo __('Issue Description'); ?></th>
-		<th></th>
-	</tr>
-	<?php
-		$i = 0;
-		foreach ($meeting['Issue'] as $issue): ?>
-		<tr>
-			<td><?php echo $this->Html->link( $issue['Topic']['name'],array('controller'=>'topics','action'=>'view',$issue['Topic']['id']));?></td>
-			<td><?php echo nl2br($issue['description']);?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'issues', 'action' => 'view', $issue['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'issues', 'action' => 'edit', $issue['id'])); ?>
-				<?php //echo $this->Form->postLink(__('Delete'), array('controller' => 'issues', 'action' => 'delete', $issue['id']), null, __('Are you sure you want to delete # %s?', $issue['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
-
-</div>

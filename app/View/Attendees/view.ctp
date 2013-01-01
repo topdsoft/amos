@@ -1,5 +1,6 @@
 <div class="attendees view">
-<h2><?php  echo __('Attendee');?></h2>
+<h2><?php  echo __('Attendee').': '.$attendee['Attendee']['name'];?></h2>
+<?php echo $this->Html->link(__('Edit'),array('action'=>'edit',$attendee['Attendee']['id'])) ?>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>

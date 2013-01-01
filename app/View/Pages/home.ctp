@@ -1,3 +1,4 @@
+<div class="help">
 <h2>Prototype Front Page</h2>
 
 <?php echo $this->Html->link(__('Issues Database'),array('controller'=>'issues')); ?><br>
@@ -48,3 +49,4 @@ Our group is part of
 		);
 ?>.
 
+</div>

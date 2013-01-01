@@ -49,8 +49,8 @@ class MeetingsController extends AppController {
 			}
 		}
 		$attendees = $this->Meeting->Attendee->find('list');
-		$issues = $this->Meeting->Issue->find('list');
-		$this->set(compact('attendees', 'issues'));
+//		$issues = $this->Meeting->Issue->find('list');
+		$this->set(compact('attendees'/*, 'issues'*/));
 	}
 
 /**
@@ -75,10 +75,10 @@ class MeetingsController extends AppController {
 			$this->request->data = $this->Meeting->read(null, $id);
 		}
 		$attendees = $this->Meeting->Attendee->find('list');
-		$issues = $this->Meeting->Issue->find('list');
+//		$issues = $this->Meeting->Issue->find('list');
 		$topics = $this->Meeting->Issue->Topic->find('list');
 		$institutions= $this->Meeting->Attendee->Institution->find('list');
-		$this->set(compact('attendees', 'issues', 'topics','institutions'));
+		$this->set(compact('attendees', 'topics','institutions'));
 		$this->set('meeting',$this->Meeting->read(null,$id));
 	}
 

@@ -60,6 +60,7 @@ h3 {
 	color: #2c6877;
 	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
 	font-size: 165%;
+	margin-top:0.5em;
 }
 h4 {
 	color: #993;
@@ -98,7 +99,7 @@ p {
 	text-decoration: underline;
 }
 #content{
-	background: #fff;
+/**	background: #fff;//*/
 	clear: both;
 	color: #333;
 	padding: 10px 20px 40px 20px;
@@ -114,10 +115,14 @@ p {
 div.form,
 div.index,
 div.view {
+	background: #fff;
 	float:right;
 	width:76%;
 	border-left:1px solid #666;
 	padding:10px 2%;
+}
+div.form {
+  	background: none;
 }
 div.actions {
 	float:left;
@@ -129,6 +134,13 @@ div.actions h3 {
 	color:#777;
 }
 
+div.help {
+	background: #fff;
+}
+
+div.popup {
+	background: #fff;
+}
 
 /** Tables **/
 table {
@@ -263,7 +275,7 @@ form {
 fieldset {
 	margin-bottom: 1em;
 	padding: 16px 10px;
-	background: #eee;
+	background: #ccc;
 	border: 2px groove threedface;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -271,7 +283,7 @@ fieldset {
 }
 fieldset legend {
 	color: #555;
-	background: #eee;
+	background: #ccc;
 	font-size: 150%;
 	font-weight: bold;
 	padding: 2px 5px;
@@ -566,6 +578,7 @@ input[type=submit]:active,
 
 /** Related **/
 .related {
+  	background: #fff;
 	clear: both;
 	display: block;
 }

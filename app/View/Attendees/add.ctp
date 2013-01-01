@@ -1,7 +1,7 @@
 <div class="attendees form">
 <?php echo $this->Form->create('Attendee');?>
 	<fieldset>
-		<legend><?php echo __('Add Attendee'); ?></legend>
+		<legend><?php echo __('New Attendee'); ?></legend>
 	<?php
 		echo $this->Form->input('lastName');
 		echo $this->Form->input('firstName');
