@@ -4,8 +4,8 @@
 		<legend><?php echo __('Edit Issue'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('description');
 		echo $this->Form->input('topic_id');
+		echo $this->Form->input('description');
 //		echo $this->Form->input('Meeting');
 	?>
 	</fieldset>

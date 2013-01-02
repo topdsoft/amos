@@ -41,7 +41,7 @@ class OneononesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Oneonone->create();
 			if ($this->Oneonone->save($this->request->data)) {
-				$this->Session->setFlash(__('The oneonone has been saved'));
+				$this->Session->setFlash(__('The oneonone has been saved'),'default',array('class'=>'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The oneonone could not be saved. Please, try again.'));
@@ -65,7 +65,7 @@ class OneononesController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Oneonone->save($this->request->data)) {
-				$this->Session->setFlash(__('The oneonone has been saved'));
+				$this->Session->setFlash(__('The oneonone has been saved'),'default',array('class'=>'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The oneonone could not be saved. Please, try again.'));

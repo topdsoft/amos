@@ -42,7 +42,7 @@ class MeetingsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Meeting->create();
 			if ($this->Meeting->save($this->request->data)) {
-				$this->Session->setFlash(__('The meeting has been saved'));
+				$this->Session->setFlash(__('The meeting has been saved'),'default',array('class'=>'success'));
 				$this->redirect(array('action' => 'edit',$this->Meeting->getInsertId()));
 			} else {
 				$this->Session->setFlash(__('The meeting could not be saved. Please, try again.'));
@@ -66,7 +66,7 @@ class MeetingsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Meeting->save($this->request->data)) {
-				$this->Session->setFlash(__('The meeting has been saved'));
+				$this->Session->setFlash(__('The meeting has been saved'),'default',array('class'=>'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The meeting could not be saved. Please, try again.'));

@@ -33,7 +33,7 @@ class IssuesController extends AppController {
 			$this->Issue->create();
 			$this->request->data['Meeting']=array('Meeting'=>array($id));
 			if ($this->Issue->save($this->request->data)) {
-				$this->Session->setFlash(__('The issue has been saved'));
+				$this->Session->setFlash(__('The issue has been saved'),'default',array('class'=>'success'));
 				$this->set('return',true);
 			} else {
 				$this->Session->setFlash(__('The issue could not be saved. Please, try again.'));
@@ -88,7 +88,7 @@ class IssuesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Issue->create();
 			if ($this->Issue->save($this->request->data)) {
-				$this->Session->setFlash(__('The issue has been saved'));
+				$this->Session->setFlash(__('The issue has been saved'),'default',array('class'=>'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The issue could not be saved. Please, try again.'));
@@ -112,7 +112,7 @@ class IssuesController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Issue->save($this->request->data)) {
-				$this->Session->setFlash(__('The issue has been saved'));
+				$this->Session->setFlash(__('The issue has been saved'),'default',array('class'=>'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The issue could not be saved. Please, try again.'));

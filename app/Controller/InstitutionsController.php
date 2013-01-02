@@ -41,7 +41,7 @@ class InstitutionsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Institution->create();
 			if ($this->Institution->save($this->request->data)) {
-				$this->Session->setFlash(__('The institution has been saved'));
+				$this->Session->setFlash(__('The institution has been saved'),'default',array('class'=>'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The institution could not be saved. Please, try again.'));
@@ -62,7 +62,7 @@ class InstitutionsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Institution->save($this->request->data)) {
-				$this->Session->setFlash(__('The institution has been saved'));
+				$this->Session->setFlash(__('The institution has been saved'),'default',array('class'=>'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The institution could not be saved. Please, try again.'));

@@ -3,8 +3,8 @@
 	<fieldset>
 		<legend><?php echo __('Add Issue'); ?></legend>
 	<?php
-		echo $this->Form->input('description');
 		echo $this->Form->input('topic_id');
+		echo $this->Form->input('description');
 //		echo $this->Form->input('Meeting');
 	?>
 	</fieldset>

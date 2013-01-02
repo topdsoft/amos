@@ -28,7 +28,7 @@ class AttendeesController extends AppController {
 			$this->request->data['Meeting']=array('Meeting'=>array($id));
 //debug($this->request->data);exit;
 			if ($this->Attendee->save($this->request->data)) {
-				$this->Session->setFlash(__('The attendee has been saved'));
+				$this->Session->setFlash(__('The attendee has been saved'),'default',array('class'=>'success'));
 				$this->set('return',true);
 			} else {
 				$this->Session->setFlash(__('The attendee could not be saved. Please, try again.'));
@@ -83,7 +83,7 @@ class AttendeesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Attendee->create();
 			if ($this->Attendee->save($this->request->data)) {
-				$this->Session->setFlash(__('The attendee has been saved'));
+				$this->Session->setFlash(__('The attendee has been saved'),'default',array('class'=>'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The attendee could not be saved. Please, try again.'));
@@ -107,7 +107,7 @@ class AttendeesController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Attendee->save($this->request->data)) {
-				$this->Session->setFlash(__('The attendee has been saved'));
+				$this->Session->setFlash(__('The attendee has been saved'),'default',array('class'=>'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The attendee could not be saved. Please, try again.'));

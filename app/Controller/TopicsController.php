@@ -41,7 +41,7 @@ class TopicsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Topic->create();
 			if ($this->Topic->save($this->request->data)) {
-				$this->Session->setFlash(__('The topic has been saved'));
+				$this->Session->setFlash(__('The topic has been saved'),'default',array('class'=>'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The topic could not be saved. Please, try again.'));
@@ -62,7 +62,7 @@ class TopicsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Topic->save($this->request->data)) {
-				$this->Session->setFlash(__('The topic has been saved'));
+				$this->Session->setFlash(__('The topic has been saved'),'default',array('class'=>'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The topic could not be saved. Please, try again.'));
