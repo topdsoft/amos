@@ -3,7 +3,7 @@
 	<fieldset>
 		<legend><?php echo __('New Attendee'); ?></legend>
 	<?php
-		echo $this->Form->input('lastName');
+		echo $this->Form->input('lastName',array('id'=>'ln'));
 		echo $this->Form->input('firstName');
 		echo $this->Form->input('institution_id');
 		echo $this->Form->input('email');
@@ -15,3 +15,4 @@
 <?php echo $this->Form->end(__('Submit'));?>
 </div>
 <?php echo $this->element('menu'); ?>
+<script type='text/javascript'>document.getElementById('ln').focus();</script>
