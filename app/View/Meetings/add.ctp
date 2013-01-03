@@ -3,7 +3,7 @@
 	<fieldset>
 		<legend><?php echo __('Add Meeting'); ?></legend>
 	<?php
-		echo $this->Form->input('location');
+		echo $this->Form->input('location',array('id'=>'ln'));
 		echo $this->Form->input('date');
 		echo $this->Form->input('facilitator');
 		echo $this->Form->input('notes');
@@ -14,3 +14,4 @@
 <?php echo $this->Form->end(__('Submit'));?>
 </div>
 <?php echo $this->element('menu'); ?>
+<script type='text/javascript'>document.getElementById('ln').focus();</script>
