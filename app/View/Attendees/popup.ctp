@@ -6,7 +6,10 @@
 	 <?php
 		  echo $this->Form->input('lastName');
 		  echo $this->Form->input('firstName');
-		  echo $this->Form->input('institution_id');
+		  echo $this->Form->input('institution_id',array('label'=>'Select Institution'));
+		  echo '<span id="newinst">';
+		  echo $this->Form->input('Institution.name',array('label'=>'Enter New Institution'));
+		  echo '</span>';
 		  echo $this->Form->input('email');
 		  echo $this->Form->input('phone');
 		  echo $this->Form->input('notes');
@@ -60,8 +63,20 @@
 	 self.close();
   }
 
+  $('#newinst').hide();
   <?php if(!isset($retry)) echo '$("#addnew").slideUp(0);' ?>
   <?php if(isset($return)) echo 'window.onload=refreshandclose();' ?>
+
+	$("#AttendeeInstitutionId").change(function(){
+		if($(this).val()==0) {
+			//selecting new institution
+			$('#newinst').slideDown(100);
+		} else {
+			//using existing
+			$('#InstitutionName').val('');
+			$('#newinst').slideUp(100);
+		}
+	} );
   
   function shownew() {
 	 $("#addnew").slideDown(500);

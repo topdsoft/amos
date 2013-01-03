@@ -12,10 +12,11 @@ class Institution extends AppModel {
  * @var string
  */
 	public $displayField = 'name';
+	public $order = 'name';
 	
 	public $virtualFields=array(
 		'attendees'=>'select count(*) from attendees where institution_id=Institution.id',
-		'total'=>'select count(*) from attendees_meetings where attendees_meetings.attendee_id in (select attendee_id from attendees where institution_id=Institution.id)',
+		'total'=>'select count(*) from attendees_meetings where attendees_meetings.attendee_id in (select attendees.id from attendees where institution_id=Institution.id)',
 	);
 /**
  * Validation rules
@@ -26,7 +27,7 @@ class Institution extends AppModel {
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please Enter an Institution Name here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -57,5 +58,26 @@ class Institution extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+
+/**
+ * checkadd method
+ * @property institution $name
+ * if $name is not allready a institution it will be added and the new id will be returned
+ * if it is existing the id will be returned
+ * if adding name fails returns null
+ */
+
+	public function checkadd($name) {
+		$institution=$this->find('first',array('conditions'=>array('Institution.name'=>$name)));
+		$id=null;
+		if($institution) {
+			//institution found
+			$id=$institution['Institution']['id'];
+		} else {
+			//add institution
+			if($this->save(array('id'=>null,'name'=>$name))) $id=$this->getInsertId();
+		}//endif
+		return $id;
+	}
 
 }

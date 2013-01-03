@@ -57,6 +57,10 @@ $cakeDescription = __d('AMOS', 'Plymouth AMOS Group');
 			?>
 		</div>
 	</div>
+<div id="footer2">
+Copyright &copy; <?php echo date('Y');?> <a href="http://topDsoft.com" style="color:#fff">Top Drawer Software</a> | 
+Proprietary Data of Top Drawer Software LLC
+</div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>

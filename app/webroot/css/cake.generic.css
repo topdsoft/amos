@@ -110,6 +110,10 @@ p {
 	padding: 6px 10px;
 	text-align: right;
 }
+#footer2 {
+	clear: both;
+	text-align: center;
+}
 
 /** containers **/
 div.form,

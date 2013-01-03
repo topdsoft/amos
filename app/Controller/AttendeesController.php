@@ -25,7 +25,19 @@ class AttendeesController extends AppController {
   public function popup($id= null) {
 		if ($this->request->is('post')) {
 			$this->Attendee->create();
+			//add to meeting
 			$this->request->data['Meeting']=array('Meeting'=>array($id));
+			if($this->request->data['Attendee']['institution_id']==0) {
+				//user selected to add new institution
+				if(empty($this->request->data['Institution']['name'])) {
+					//set empty institution name to default
+					$this->request->data['Attendee']['institution_id']=2;
+				} else {
+					//create new institution or get id of existing
+					$this->request->data['Attendee']['institution_id']=$this->Attendee->Institution->checkadd($this->request->data['Institution']['name']);
+					if($this->request->data['Attendee']['institution_id']==0) $this->request->data['Attendee']['institution_id']=2;
+				}//endif
+			}
 //debug($this->request->data);exit;
 			if ($this->Attendee->save($this->request->data)) {
 				$this->Session->setFlash(__('The attendee has been saved'),'default',array('class'=>'success'));
@@ -34,12 +46,16 @@ class AttendeesController extends AppController {
 				$this->Session->setFlash(__('The attendee could not be saved. Please, try again.'));
 				$this->set('retry',true);
 			}
+		} else {
+			//set default institution
+			$this->request->data['Attendee']['institution_id']=2;
 		}//endif
 		//find what attendees are already in this meeting
 		$attendeesList=$this->Attendee->AttendeesMeeting->find('list',array('fields'=>'attendee_id','conditions'=>array('meeting_id'=>$id)));
 		$this->Attendee->recursive = 0;
 		$this->set('attendees', $this->paginate(array('not'=>array('Attendee.id'=>$attendeesList))));
 		$institutions = $this->Attendee->Institution->find('list');
+		$institutions[0]='(New)';
 //		$meetings = $this->Attendee->Meeting->find('list');
 //		$this->set(compact('institutions', 'meetings'));
 		$this->set(compact('institutions'));
