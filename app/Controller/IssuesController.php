@@ -15,6 +15,7 @@ class IssuesController extends AppController {
  */
 	public function index() {
 		$this->Issue->recursive = 0;
+		$this->Issue->order=array('Topic.name','description');
 		$this->set('issues', $this->paginate());
 	}
 
@@ -22,32 +23,32 @@ class IssuesController extends AppController {
  * popup method
  *
  */
-  public function popup($id=null) {
+  public function popup($id=null, $topic_id=13) {
 		if ($this->request->is('post')) {
-			if(!empty($this->request->data['Issue']['topicName'])) {
-				//user has entered a topic
-				$this->request->data['Issue']['topic_id']=$this->Issue->Topic->checkadd($this->request->data['Issue']['topicName']);
-			}//endif
-			unset($this->request->data['Issue']['topicName']);
 //debug($this->request->data);exit;
-			$this->Issue->create();
-			$this->request->data['Meeting']=array('Meeting'=>array($id));
-			if ($this->Issue->save($this->request->data)) {
-				$this->Session->setFlash(__('The issue has been saved'),'default',array('class'=>'success'));
-				$this->set('return',true);
+			$topic_id=$this->request->data['Issue']['topic_id'];
+			if($this->request->data['Issue']['changetopic']) {
+				//user has clicked a different topic
+				$this->request->data['Issue']['changetopic']=false;
 			} else {
-				$this->Session->setFlash(__('The issue could not be saved. Please, try again.'));
-				$this->set('retry',true);
-			}//*/
+				//user wants to add a new issue
+				$this->Issue->create();
+				$this->request->data['Meeting']=array('Meeting'=>array($id));
+				if ($this->Issue->save($this->request->data)) {
+					$this->Session->setFlash(__('The issue has been saved'),'default',array('class'=>'success'));
+					$this->set('return',true);
+				} else {
+					$this->Session->setFlash(__('The issue could not be saved. Please, try again.'));
+					$this->set('retry',true);
+				}
+			}//endif
 		}//endif
 		//find what issues are already with this meeting
 		$issuesList=$this->Issue->IssuesMeeting->find('list',array('fields'=>'issue_id','conditions'=>array('meeting_id'=>$id)));
 //debug($issuesList);exit;
 		$this->Issue->recursive = 0;
-		$this->set('issues', $this->paginate(array('not'=>array('Issue.id'=>$issuesList))));
+		$this->set('issues', $this->paginate(array('topic_id'=>$topic_id,'not'=>array('Issue.id'=>$issuesList))));
 		$topics = $this->Issue->Topic->find('list');
-//		$meetings = $this->Issue->Meeting->find('list');
-//		$this->set(compact('topics', 'meetings'));
 		$this->set(compact('topics'));
 		$this->set('meeting_id',$id);
   }

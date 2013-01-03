@@ -2,8 +2,8 @@
 	<h2><?php echo __('Issues');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
-			<th><?php echo $this->Paginator->sort('topic_id');?></th>
+			<th><?php //echo $this->Paginator->sort('id');?></th>
+			<th><?php echo $this->Paginator->sort('Topic.name','Topic');?></th>
 			<th><?php echo $this->Paginator->sort('description');?></th>
 			<th><?php echo $this->Paginator->sort('meetings');?></th>
 			<th><?php echo $this->Paginator->sort('oneonones');?></th>
@@ -12,7 +12,7 @@
 	<?php
 	foreach ($issues as $issue): ?>
 	<tr>
-		<td><?php echo h($issue['Issue']['id']); ?>&nbsp;</td>
+		<td><?php //echo h($issue['Issue']['id']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($issue['Topic']['name'], array('controller' => 'topics', 'action' => 'view', $issue['Topic']['id'])); ?>
 		</td>

@@ -12,7 +12,7 @@ class Issue extends AppModel {
 		'oneonones'=>'select count(*) from attendees_issues where attendees_issues.issue_id=Issue.id'
 	);
 	
-	public $order=array('Topic.name','Issue.description');
+	public $order=array('Issue.description');
 /**
  * Validation rules
  *
