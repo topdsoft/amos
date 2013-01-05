@@ -3,12 +3,14 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
-			<th><?php echo $this->Paginator->sort('lastName');?></th>
-			<th><?php echo $this->Paginator->sort('firstName');?></th>
-			<th><?php echo $this->Paginator->sort('institution_id');?></th>
+			<th><?php echo $this->Paginator->sort('lastName','Last Name');?></th>
+			<th><?php echo $this->Paginator->sort('firstName','First Name');?></th>
+			<th><?php echo $this->Paginator->sort('Institution.name','Institution');?></th>
 			<th><?php echo $this->Paginator->sort('email');?></th>
 			<th><?php echo $this->Paginator->sort('phone');?></th>
-			<th><?php echo $this->Paginator->sort('numAttended');?></th>
+			<th><?php echo $this->Paginator->sort('numAttended','HM');?></th>
+			<th><?php echo $this->Paginator->sort('ooo1','1on1a');?></th>
+			<th><?php echo $this->Paginator->sort('ooo2','1on1b');?></th>
 			<th></th>
 	</tr>
 	<?php
@@ -23,6 +25,8 @@
 		<td><?php echo h($attendee['Attendee']['email']); ?>&nbsp;</td>
 		<td><?php echo h($attendee['Attendee']['phone']); ?>&nbsp;</td>
 		<td><?php echo h($attendee['Attendee']['numAttended']); ?>&nbsp;</td>
+		<td><?php echo h($attendee['Attendee']['ooo1']); ?>&nbsp;</td>
+		<td><?php echo h($attendee['Attendee']['ooo2']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $attendee['Attendee']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $attendee['Attendee']['id'])); ?>

@@ -23,7 +23,7 @@ class IssuesController extends AppController {
  * popup method
  *
  */
-  public function popup($id=null, $topic_id=13) {
+  public function popup($id=null) {
 		if ($this->request->is('post')) {
 //debug($this->request->data);exit;
 			$topic_id=$this->request->data['Issue']['topic_id'];
@@ -42,6 +42,9 @@ class IssuesController extends AppController {
 					$this->set('retry',true);
 				}
 			}//endif
+		} else {
+			//default topic is 13
+			$topic_id=13;
 		}//endif
 		//find what issues are already with this meeting
 		$issuesList=$this->Issue->IssuesMeeting->find('list',array('fields'=>'issue_id','conditions'=>array('meeting_id'=>$id)));

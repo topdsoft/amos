@@ -19,6 +19,8 @@ class Attendee extends AppModel {
 		parent::__construct($id, $table, $ds);
 		$this->virtualFields['numAttended'] = sprintf('select count(*) from attendees_meetings where attendees_meetings.attendee_id=%s.id', $this->alias);
 		$this->virtualFields['name']=sprintf('CONCAT(%s.firstName, " ", %s.lastName)', $this->alias, $this->alias);
+		$this->virtualFields['ooo1']=sprintf('select count(*) from oneonones where attendee1_id=%s.id',$this->alias);
+		$this->virtualFields['ooo2']=sprintf('select count(*) from oneonones where attendee2_id=%s.id',$this->alias);
 		$this->order[]= sprintf('%s.lastName',$this->alias);
 		$this->order[]= sprintf('%s.firstName',$this->alias);
 	}

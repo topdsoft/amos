@@ -50,7 +50,7 @@ class Institution extends AppModel {
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => '',
+			'order' => array('lastName','firstName'),
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',
