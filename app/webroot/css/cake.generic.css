@@ -587,6 +587,19 @@ input[type=submit]:active,
 	display: block;
 }
 
+.screenshot {
+	border:5px solid black;
+	margin:10px;
+/**	background:black;**/
+	color: black;
+	-moz-box-shadow: 5px 5px 5px 2px #999; 
+	-webkit-box-shadow: 5px 5px 5px 2px #999;
+	-box-shadow: 5px 5px 5px 2px #999; 
+	-moz-border-radius:5px; 
+	-webkit-border-radius:5px; 
+	-border-radius:5px;
+}
+
 /** Debugging **/
 pre {
 	color: #000;
