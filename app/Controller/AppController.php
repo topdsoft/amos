@@ -32,4 +32,11 @@ App::uses('Controller', 'Controller');
  * @link http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+	public $components = array('Auth', 'Session', 'Cookie');
+
+	public function beforeFilter() {
+		$this->Auth->loginError="The Username/Password You Entered Does Not Match Our Records";
+		$this->Auth->authError="You Must Log In To Access This Location";
+		parent::beforeFilter();
+	}
 }

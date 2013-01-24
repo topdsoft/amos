@@ -40,11 +40,19 @@ $cakeDescription = __d('AMOS', 'Plymouth AMOS Group');
 	<div id="container">
 		<div id="header">
 			<h1>Plymouth AMOS</h1>
-			<?php echo $this->Html->link(__('HELP'),array('controller'=>'pages','action'=>'help')) ?>
+			<?php echo $this->Html->link(__('HELP'),array('controller'=>'pages','action'=>'help')) ?><br>
+			<?php 
+				if($this->Session->read('Auth.User.username')) {
+					//user is logged in
+					echo 'Welcome '.$this->Session->read('Auth.User.username').' ';
+					echo $this->Html->link('Logout', array('controller'=>'users','action'=>'logout'));
+				}//endif 
+			?>
 		</div>
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
+			<?php echo $this->Session->flash('auth'); ?>
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
