@@ -52,10 +52,10 @@ Our group is part of
 <br><br>
 <fieldset><legend>Statistics</legend>
 <?php
-	echo '<strong>'.ClassRegistry::init('Attendee')->find('count').'</strong> Attendees from ';
-	echo '<strong>'.ClassRegistry::init('Institution')->find('count').'</strong> institutions. ';
-	echo 'Have attended <strong>'.ClassRegistry::init('Meeting')->find('count').'</strong> meetings and brought up ';
-	echo '<strong>'.ClassRegistry::init('Issue')->find('count').'</strong> Issues over <strong>';
-	echo ClassRegistry::init('Topic')->find('count').'</strong> topics.';
+	echo '<strong>'.ClassRegistry::init('Attendee')->find('count').'</strong> '.$this->Html->link('attendees',array('controller'=>'attendees')).' from ';
+	echo '<strong>'.ClassRegistry::init('Institution')->find('count').'</strong> '.$this->Html->link('institutions',array('controller'=>'institutions')) .' ';
+	echo 'have attended <strong>'.ClassRegistry::init('Meeting')->find('count').'</strong> '.$this->Html->link('meetings',array('controller'=>'meetings')).' and brought up ';
+	echo '<strong>'.ClassRegistry::init('Issue')->find('count').'</strong> '.$this->Html->link('issues',array('controller'=>'issues')).' over <strong>';
+	echo ClassRegistry::init('Topic')->find('count').'</strong> '.$this->Html->link('topics',array('controller'=>'topics')).'.';
 ?>
 </fieldset>
