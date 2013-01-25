@@ -3,7 +3,6 @@
 
 <?php echo $this->Html->link(__('Issues Database'),array('controller'=>'issues')); ?><br>
 <?php echo $this->Html->link(__('Goals for this database'),array('goals')); ?><br>
-<?php echo $this->Html->link(__('Spreadsheet file: 2012 House Meeting Data'),'/files/2012 House Meeting Information.xlsx'); ?>
 <br><br>
 AMOS (A
         Mid-Iowa Organizing Strategy) is a broad-based community
