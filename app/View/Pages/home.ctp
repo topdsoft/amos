@@ -48,5 +48,14 @@ Our group is part of
 			array('target' => '_blank', 'escape' => false)
 		);
 ?>.
-
 </div>
+<br><br>
+<fieldset><legend>Statistics</legend>
+<?php
+	echo '<strong>'.ClassRegistry::init('Attendee')->find('count').'</strong> Attendees from ';
+	echo '<strong>'.ClassRegistry::init('Institution')->find('count').'</strong> institutions. ';
+	echo 'Have attended <strong>'.ClassRegistry::init('Meeting')->find('count').'</strong> meetings and brought up ';
+	echo '<strong>'.ClassRegistry::init('Issue')->find('count').'</strong> Issues over <strong>';
+	echo ClassRegistry::init('Topic')->find('count').'</strong> topics.';
+?>
+</fieldset>
