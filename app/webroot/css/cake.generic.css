@@ -86,6 +86,8 @@ p {
 	background: #003d4c ;
 	color: #fff;
 	padding: 0px 30px;
+	width: 500px;
+	display: inline;
 }
 #header a {
 	color: #fff;

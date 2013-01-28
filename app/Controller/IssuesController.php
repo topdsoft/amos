@@ -62,6 +62,12 @@ class IssuesController extends AppController {
 	 $this->Issue->IssuesMeeting->save(array('issue_id'=>$issue_id,'meeting_id'=>$meeting_id));
   }
 
+	public function additoa($issue_id=null, $attendee_id=null) {
+		//add issue to attendee
+		$this->Issue->AttendeesIssue->create();
+		$this->Issue->AttendeesIssue->save(array('issue_id'=>$issue_id,'attendee_id'=>$attendee_id));
+	}
+
   public function removefrommeeting($id = null) {
 	 $this->Issue->IssuesMeeting->id=$id;
 	 $this->Issue->IssuesMeeting->delete();
