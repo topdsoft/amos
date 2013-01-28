@@ -12,5 +12,6 @@
 		<li><?php echo $this->Html->link(__('New Meeting'), array('controller' => 'meetings', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List One on Ones'), array('controller' => 'oneonones', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New One on One'), array('controller' => 'oneonones', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 	</ul>
 </div>

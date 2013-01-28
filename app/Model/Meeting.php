@@ -11,6 +11,7 @@ class Meeting extends AppModel {
 	 'numAttendees'=>'select count(*) from attendees_meetings where attendees_meetings.meeting_id=Meeting.id',
 	 'numIssues'=>'select count(*) from issues_meetings where issues_meetings.meeting_id=Meeting.id'
   );
+	public $order=array('date desc');
 /**
  * Validation rules
  *

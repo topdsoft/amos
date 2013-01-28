@@ -3,7 +3,6 @@
 
 <?php echo $this->Html->link(__('Issues Database'),array('controller'=>'issues')); ?><br>
 <?php echo $this->Html->link(__('Goals for this database'),array('goals')); ?><br>
-<?php echo $this->Html->link(__('Spreadsheet file: 2012 House Meeting Data'),'/files/2012 House Meeting Information.xlsx'); ?>
 <br><br>
 AMOS (A
         Mid-Iowa Organizing Strategy) is a broad-based community
@@ -49,5 +48,14 @@ Our group is part of
 			array('target' => '_blank', 'escape' => false)
 		);
 ?>.
-
 </div>
+<br><br>
+<fieldset><legend>Statistics</legend>
+<?php
+	echo '<strong>'.ClassRegistry::init('Attendee')->find('count').'</strong> '.$this->Html->link('attendees',array('controller'=>'attendees')).' from ';
+	echo '<strong>'.ClassRegistry::init('Institution')->find('count').'</strong> '.$this->Html->link('institutions',array('controller'=>'institutions')) .' ';
+	echo 'have attended <strong>'.ClassRegistry::init('Meeting')->find('count').'</strong> '.$this->Html->link('meetings',array('controller'=>'meetings')).' and brought up ';
+	echo '<strong>'.ClassRegistry::init('Issue')->find('count').'</strong> '.$this->Html->link('issues',array('controller'=>'issues')).' over <strong>';
+	echo ClassRegistry::init('Topic')->find('count').'</strong> '.$this->Html->link('topics',array('controller'=>'topics')).'.';
+?>
+</fieldset>
