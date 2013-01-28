@@ -39,10 +39,6 @@ $cakeDescription = __d('AMOS', 'Plymouth AMOS Group');
 <body>
 	<div id="container">
 		<div id="header">
-<<<<<<< HEAD
-			<h1><?php echo $this->Html->link('Plymouth AMOS','/'); ?></h1>
-			<?php echo $this->Html->link(__('HELP'),array('controller'=>'pages','action'=>'help')) ?>
-=======
 			<h1>Plymouth AMOS</h1>
 			<?php echo $this->Html->link(__('HELP'),array('controller'=>'pages','action'=>'help')) ?><br>
 			<?php 
@@ -52,7 +48,6 @@ $cakeDescription = __d('AMOS', 'Plymouth AMOS Group');
 					echo $this->Html->link('Logout', array('controller'=>'users','action'=>'logout'));
 				}//endif 
 			?>
->>>>>>> 25356783d95df823e1bea41ffbbeb581b9ea18a6
 		</div>
 		<div id="content">
 
