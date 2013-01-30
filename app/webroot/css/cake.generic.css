@@ -93,12 +93,18 @@ p {
 	color: #fff;
 	background: #003d4c;
 	font-weight: normal;
-	text-decoration: none;
+/*	text-decoration: none;*/
 }
 #header a:hover {
-	color: #fff;
+	color: #bbb;
 	background: #003d4c;
 	text-decoration: underline;
+}
+#header h1 a {
+	text-decoration:none;
+}
+#userblock {
+	float: right;
 }
 #content{
 /**	background: #fff;//*/
