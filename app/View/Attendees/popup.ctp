@@ -1,7 +1,7 @@
 <div class="popup">
 	<h2><?php echo __('Add New Attendee or Select From Below');?></h2>
   <?php echo $this->Form->create('Attendee');?>
-	 <fieldset><legend>Enter a new Attendee Here</legend>
+	 <fieldset><legend><a href="#" onclick=shownew() id="legend">Enter a new Attendee Here</a></legend>
 	 <span id="addnew" style="display: inline-block">
 	 <?php
 		  echo $this->Form->input('lastName');
@@ -81,11 +81,13 @@
   function shownew() {
 	 $("#addnew").slideDown(500);
 	 $("#showlink").hide();
+	 $("#legend").attr('onclick','hidenew()');
   }
   
   function hidenew() {
 	 $("#addnew").slideUp(500);
 	 $("#showlink").show();
+	 $("#legend").attr('onclick','shownew()');
   }
 //--
 </script>
