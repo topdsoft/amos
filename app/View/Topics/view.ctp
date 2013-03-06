@@ -19,7 +19,7 @@
 	 <table cellpadding = "0" cellspacing = "0">
 	 <tr>
 		  <th><?php echo __('Description'); ?></th>
-		  <th><?php echo __('Occurrences'); ?></th>
+		  <th title='How many times this issue has been brought up at house meetings.'><?php echo __('Occurrences'); ?></th>
 		  <th></th>
 	 </tr>
 	 <?php

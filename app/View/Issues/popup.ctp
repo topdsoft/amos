@@ -52,15 +52,16 @@
 	} );
   
   function shownew() {
+	 $("#legend").attr('onclick','hidenew()');
 	 $("#addnew").slideDown(500);
 	 $("#showlink").hide();
-	 $("#legend").attr('onclick','hidenew()');
+//	 $("#IssueDescription").focus();
   }
   
   function hidenew() {
+	 $("#legend").attr('onclick','shownew()');
 	 $("#addnew").slideUp(500);
 	 $("#showlink").show();
-	 $("#legend").attr('onclick','shownew()');
   }
   
   function show() {

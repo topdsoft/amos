@@ -6,8 +6,8 @@
 			<th><?php echo $this->Paginator->sort('location');?></th>
 			<th><?php echo $this->Paginator->sort('date');?></th>
 			<th><?php echo $this->Paginator->sort('facilitator');?></th>
-			<th><?php echo $this->Paginator->sort('numAttendees');?></th>
-			<th><?php echo $this->Paginator->sort('numIssues');?></th>
+			<th title='How many attendees were at meeting.'><?php echo $this->Paginator->sort('numAttendees','#Att');?></th>
+			<th title='How many issues where brought up at meeting'><?php echo $this->Paginator->sort('numIssues','#Iss');?></th>
 			<th></th>
 	</tr>
 	<?php
