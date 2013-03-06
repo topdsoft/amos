@@ -16,7 +16,7 @@
 	?>
 	<h3>Attendees</h3>
 	<a href="#" onclick="window.open('<?php echo $this->Html->url(array('controller'=>'attendees','action'=>'popup',$meeting['Meeting']['id'])); ?>',
-	'popup','width=500,height=600,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0');
+	'popup','width=500,height=600,scrollbars=yes,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0');
 	return false">Add Attendee</a>
 	<table>
 		<tr><th>Last Name</th><th>First Name</th><th>Institution</th><th>Num Attended</th><th></th></tr>
@@ -38,7 +38,7 @@
 	
 	<h3>Issues</h3>
 	<a href="#" onclick="window.open('<?php echo $this->Html->url(array('controller'=>'issues','action'=>'popup',$meeting['Meeting']['id'])); ?>',
-	'popup','width=500,height=600,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0');
+	'popup','width=500,height=600,scrollbars=yes,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0');
 	return false">Add Issue</a>
 	<table>
 		<tr><th>Topic</th><th>Description</th><th></th></tr>

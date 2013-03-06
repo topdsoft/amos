@@ -93,12 +93,18 @@ p {
 	color: #fff;
 	background: #003d4c;
 	font-weight: normal;
-	text-decoration: none;
+/*	text-decoration: none;*/
 }
 #header a:hover {
-	color: #fff;
+	color: #bbb;
 	background: #003d4c;
 	text-decoration: underline;
+}
+#header h1 a {
+	text-decoration:none;
+}
+#userblock {
+	float: right;
 }
 #content{
 /**	background: #fff;//*/
@@ -297,6 +303,9 @@ fieldset legend {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
+}
+fieldset legend a {
+	text-decoration: none;
 }
 fieldset fieldset {
 	margin-top: 0;

@@ -22,7 +22,7 @@
   <?php endforeach; ?>
 	 </table>
 
-	 <fieldset><legend>Create a New Issue Here</legend>
+	 <fieldset><legend><a href="#" onclick=shownew() id="legend">Create a New Issue Here</a></legend>
 	 <span id="addnew" style="display: inline-block">
 	 <?php
 		  echo $this->Form->input('description',array('label'=>'Enter Issue Description'));
@@ -54,11 +54,13 @@
   function shownew() {
 	 $("#addnew").slideDown(500);
 	 $("#showlink").hide();
+	 $("#legend").attr('onclick','hidenew()');
   }
   
   function hidenew() {
 	 $("#addnew").slideUp(500);
 	 $("#showlink").show();
+	 $("#legend").attr('onclick','shownew()');
   }
   
   function show() {
