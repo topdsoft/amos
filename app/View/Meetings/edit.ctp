@@ -3,6 +3,8 @@
 	<fieldset>
 		<legend><?php echo __('Edit Meeting #'.$this->Form->value('id')); ?></legend>
 	<?php
+		//show link for page specific help
+		echo $this->Html->link(__('Meeting entry help page'),array('controller'=>'pages','action'=>'addmeeting'),array('target'=>'none'));
 		echo $this->Form->input('id');
 		echo $this->Form->input('location',array('id'=>'ln'));
 		echo $this->Form->input('date');
