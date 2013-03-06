@@ -1,9 +1,9 @@
 <div class="help">
-<h2>Prototype Front Page</h2>
+<h2>Welcome to Plymouth AMOS</h2>
 
-<?php echo $this->Html->link(__('Issues Database'),array('controller'=>'issues')); ?><br>
+<?php echo $this->Html->link(__('Issues Database'),array('controller'=>'issues')); ?><br><br>
 <?php echo $this->Html->link(__('Goals for this database'),array('goals')); ?><br>
-<br><br>
+<br>
 AMOS (A
         Mid-Iowa Organizing Strategy) is a broad-based community
         organization that help citizens get actively engaged in the
@@ -47,7 +47,7 @@ Our group is part of
 			'http://www.plymouthchurch.com',
 			array('target' => '_blank', 'escape' => false)
 		);
-?>.
+?>.<br><br>
 </div>
 <br><br>
 <fieldset><legend>Statistics</legend>
