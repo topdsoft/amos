@@ -21,6 +21,16 @@
 	 <a href="#" onclick=shownew() id="showlink">show</a>
 	 <a href="#" onclick=refreshandclose()>close</a>
 	 </fieldset>
+	 <?php
+		if(isset($initials)) {
+			//show list of first latters to filter by
+			foreach($initials as $i) echo $this->Html->link($i,array($meeting_id,$i)).' ';
+		} else {
+			//show clear option
+			echo $this->Html->link('Show All Names',array($meeting_id));
+		}//endif
+	 ?>
+	 <?php  ?>
 	 <table cellpadding="0" cellspacing="0">
 	 <tr>
 			 <th><?php echo $this->Paginator->sort('lastName','Last Name');?></th>

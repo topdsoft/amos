@@ -20,9 +20,10 @@ class AttendeesController extends AppController {
 
 /**
  * popup method
- *
+ * @param $id meeting_id
+ * @param $filter is used to filter by first letter of last name
  */
-  public function popup($id= null) {
+	public function popup($id= null,$filter=null) {
 		if ($this->request->is('post')) {
 			$this->Attendee->create();
 			//add to meeting
@@ -37,8 +38,15 @@ class AttendeesController extends AppController {
 					$this->request->data['Attendee']['institution_id']=$this->Attendee->Institution->checkadd($this->request->data['Institution']['name']);
 					if($this->request->data['Attendee']['institution_id']==0) $this->request->data['Attendee']['institution_id']=2;
 				}//endif
-			}
-//debug($this->request->data);exit;
+			}//endif
+			//check if attendee is already in system
+			$found=$this->Attendee->find('first',array('fields'=>array('Attendee.id'),'recursive'=>-1,
+				'conditions'=>array(
+					'Attendee.lastName'=>$this->request->data['Attendee']['lastName'],
+					'Attendee.firstName'=>$this->request->data['Attendee']['firstName']
+				)));
+			if($found) $this->request->data['Attendee']['id']=$found['Attendee']['id'];
+// debug($this->request->data);debug($found);exit;
 			if ($this->Attendee->save($this->request->data)) {
 				$this->Session->setFlash(__('The attendee has been saved'),'default',array('class'=>'success'));
 				$this->set('return',true);
@@ -53,14 +61,17 @@ class AttendeesController extends AppController {
 		//find what attendees are already in this meeting
 		$attendeesList=$this->Attendee->AttendeesMeeting->find('list',array('fields'=>'attendee_id','conditions'=>array('meeting_id'=>$id)));
 		$this->Attendee->recursive = 0;
-		$this->set('attendees', $this->paginate(array('not'=>array('Attendee.id'=>$attendeesList))));
+		if($filter) $this->set('attendees', $this->paginate(array('Attendee.initial'=>$filter,'not'=>array('Attendee.id'=>$attendeesList))));
+		else $this->set('attendees', $this->paginate(array('not'=>array('Attendee.id'=>$attendeesList))));
 		$institutions = $this->Attendee->Institution->find('list');
 		$institutions[0]='(New)';
 //		$meetings = $this->Attendee->Meeting->find('list');
 //		$this->set(compact('institutions', 'meetings'));
 		$this->set(compact('institutions'));
 		$this->set('meeting_id',$id);
-  }
+		//get list of first letters of last name
+		if(!$filter)$this->set('initials',$this->Attendee->find('list',array('fields'=>'initial','group'=>'initial')));
+	}
 
   public function addatom($attendee_id=null, $meeting_id=null) {
 	 //add attendee to meeting
@@ -97,9 +108,16 @@ class AttendeesController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->Attendee->create();
+			$found=$this->Attendee->find('first',array('fields'=>array('Attendee.id'),'recursive'=>-1,
+				'conditions'=>array(
+					'Attendee.lastName'=>$this->request->data['Attendee']['lastName'],
+					'Attendee.firstName'=>$this->request->data['Attendee']['firstName']
+				)));
+			if($found) $this->request->data['Attendee']['id']=$found['Attendee']['id'];
+			else $this->Attendee->create();
 			if ($this->Attendee->save($this->request->data)) {
-				$this->Session->setFlash(__('The attendee has been saved'),'default',array('class'=>'success'));
+				if($found)$this->Session->setFlash(__('The attendee has been updated'),'default',array('class'=>'success'));
+				else $this->Session->setFlash(__('The attendee has been saved'),'default',array('class'=>'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The attendee could not be saved. Please, try again.'));
