@@ -136,6 +136,56 @@ class IssuesController extends AppController {
 	}
 
 /**
+ * combine method
+ * @param string $id
+ * used to combine similar issues
+ */
+	public function combine($id= null) {
+		//used to combine two similar issues
+		$this->Issue->id = $id;
+		if (!$this->Issue->exists()) {
+			throw new NotFoundException(__('Invalid issue'));
+		}
+		if ($this->request->is('post') || $this->request->is('put')) {
+			//returning from selection
+			if(isset($this->request->data['Issue']['issue_id'])) {
+				//user has selected issue
+				$this->request->data['Issue']['id']=$this->request->data['Issue']['issue_id'];
+				$secondIssue=$this->Issue->read(null,$this->request->data['Issue']['issue_id']);
+				$this->set('secondIssue',$secondIssue);
+			} else {
+				//user has confirmed
+				$dataSource=$this->Issue->getDataSource();
+				//start transaction
+				$dataSource->begin();
+				$ok=true;
+				//rename first issue
+				if($ok)$ok=$this->Issue->save(array('id'=>$id,'description'=>$this->request->data['Issue']['description']));
+				//update issues_meetings
+				if($ok)$ok=$this->Issue->query('update issues_meetings set issue_id='.$id.' where issue_id='.$this->request->data['Issue']['id']).';';
+				//update attendees_issues
+				if($ok)$ok=$this->Issue->query('update attendees_issues set issue_id='.$id.' where issue_id='.$this->request->data['Issue']['id']).';';
+				//remove second issue
+				if($ok)$ok=$this->Issue->delete($this->request->data['Issue']['id']);
+				if($ok) $dataSource->commit();
+				else $dataSource->rollback();
+				if ($ok) {
+					$this->Session->setFlash(__('The issues have been combined'),'default',array('class'=>'success'));
+					$this->redirect(array('action' => 'index'));
+				} else {
+					$this->Session->setFlash(__('The issues could not be combined. Please, try again.'));
+				}
+// debug($this->request->data);exit;
+			}//endif
+		}//endif
+		$issue=$this->Issue->read(null,$id);
+		$this->request->data['Issue']['description']=$issue['Issue']['description'];
+		$this->set('issue',$issue);
+		$this->set('issues',$this->Issue->find('list',array('fields'=>array('description'),
+			'conditions'=>array('Issue.topic_id'=>$issue['Issue']['topic_id'],'Issue.id !='=>$issue['Issue']['id']))));
+	}//end public function combine
+
+/**
  * delete method
  *
  * @param string $id
