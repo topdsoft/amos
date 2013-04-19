@@ -46,6 +46,7 @@
 		<tr><th>Topic</th><th>Description</th><th></th></tr>
 		<?php
 		$row=0;
+		$starId=0;
 		foreach ($meeting['Issue'] as $i) {
 			echo '<tr>';
 			echo '<td>'.$topics[$i['topic_id']].'</td>';
@@ -61,13 +62,14 @@
 			foreach ($meeting['Attendee'] as $a) {
 				//show all attendees
 				$inputname='AttendeesIssue.'.$i['id'].'.'.$a['id'].'.rank';
-// 				echo $a['firstName'].' '.$a['lastName'].'<table style="margin:0;width:20px;display:inline;"><tr>';
-// 				for ($ii=0; $ii<3; $ii++) echo '<td style="padding:0;border:none;"><div class="tdBox">'.$this->Html->image('offstar.png',
-// 					array('class'=>'L1','url'=>"javascript:rating(".($ii+1).")",'style'=>'position:relative;')).$this->Html->image('onstar.png',
-// 					array('class'=>'L1','url'=>"javascript:rating(".($ii+1).")",'id'=>'on',
-// 					'style'=>''.(($this->Form->value($inputname)>$ii ? '' : 'display:none;')))).'</div></td>';
-// 				echo '</tr></table><br>';
-				echo $this->Form->input($inputname,array('label'=>'','before'=>$a['firstName'].' '.$a['lastName'],'max'=>3,'min'=>0));
+				$starId++;
+				echo $a['firstName'].' '.$a['lastName'].'<table style="margin:0;width:20px;display:inline-table;"><tr>';
+				for ($ii=0; $ii<3; $ii++) echo '<td style="padding:0;border:none;"><div class="tdBox">'.$this->Html->image('offstar.png',
+					array('class'=>'L1','url'=>"javascript:rating(".($ii+1).",'on$starId','input$starId')",'style'=>'position:relative;')).$this->Html->image('onstar.png',
+					array('class'=>'L1','url'=>"javascript:rating(".($ii+1).",'on$starId','input$starId')",'id'=>'on'.$starId,
+					'style'=>''.(($this->Form->value($inputname)>$ii ? '' : 'display:none;')))).'</div></td>';
+				echo '</tr></table><br>';
+				echo $this->Form->input($inputname,array('label'=>'','before'=>$a['firstName'].' '.$a['lastName'],'id'=>'input'.$starId,'type'=>'hidden','max'=>3,'min'=>0));
 			}
 			 echo '</tr>';
 		  }
@@ -82,5 +84,5 @@
 <?php echo $this->Html->script(array('jquery-1.6.4.min','ratingstars.js'));?>
 <style type='text/css'>
 .tdBox { position:relative; padding:0; margin:0; }
-.L1 { position:absolute; width:20px; top:0px; left:0px; z-index:1; }
+.L1 { position:absolute; width:15px; top:0px; left:0px; z-index:1; }
 </style>

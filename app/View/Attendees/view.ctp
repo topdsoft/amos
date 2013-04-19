@@ -72,7 +72,7 @@
 
   <div class="related">
 	 <?php if (!empty($attendee['Issue'])):?>
-	 <h3><?php echo __('Issues '.$attendee['Attendee']['name'].' Brought up on One on Ones');?></h3>
+	 <h3><?php echo __('Issues important to '.$attendee['Attendee']['name'].':');?></h3>
 	 <table cellpadding = "0" cellspacing = "0">
 	 <tr>
 		  <th><?php echo __('Issue'); ?></th>
