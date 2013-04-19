@@ -65,6 +65,32 @@ class MeetingsController extends AppController {
 			throw new NotFoundException(__('Invalid meeting'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+// debug($this->request->data);exit;
+			if(isset($this->request->data['AttendeesIssue'])) {
+				//go through AttendeesIssue data and save ranks
+				$this->AttendeesIssue=ClassRegistry::init('AttendeesIssue');
+				foreach($this->request->data['AttendeesIssue'] as $issue_id=>$issue) {
+					foreach($issue as $attendee_id =>$attendee) {
+						if($attendee['rank']!='') {
+							$ai=$this->AttendeesIssue->find('first',array('conditions'=>array('attendee_id'=>$attendee_id,'issue_id'=>$issue_id)));
+							if($ai) {
+								//attendee has already been linked to this issue
+								$ai['AttendeesIssue']['rank']=$attendee['rank'];
+								$this->AttendeesIssue->save($ai);
+							} else {
+								//issue is new to this attendee
+								$this->AttendeesIssue->create();
+// debug($attendee);exit;
+								$this->AttendeesIssue->save(array(
+									'issue_id'=>$issue_id,
+									'attendee_id'=>$attendee_id,
+									'rank'=>$attendee['rank']
+								));
+							}//endif
+						}//endif
+					}//end foreach
+				}//end foreach
+			}//endif
 			if ($this->Meeting->save($this->request->data)) {
 				$this->Session->setFlash(__('The meeting has been saved'),'default',array('class'=>'success'));
 				$this->redirect(array('action' => 'index'));
@@ -79,7 +105,19 @@ class MeetingsController extends AppController {
 		$topics = $this->Meeting->Issue->Topic->find('list');
 		$institutions= $this->Meeting->Attendee->Institution->find('list');
 		$this->set(compact('attendees', 'topics','institutions'));
-		$this->set('meeting',$this->Meeting->read(null,$id));
+		$this->Meeting->recursive=2;
+		$meeting=$this->Meeting->read(null,$id);
+		$this->set('meeting',$meeting);
+		if(!($this->request->is('post') || $this->request->is('put'))) {
+			//set attendee current interest levels
+			foreach($meeting['Attendee'] as $a) {
+				//loop for all attendees
+				foreach($a['Issue'] as $i) {
+					//loop for each issue this attendee is interested in and set default for that issue
+					$this->request->data['AttendeesIssue'][$i['id']][$a['id']]['rank']=$i['AttendeesIssue']['rank'];
+				}//end foreach issue
+			}//end foreach attendee
+		}//endif
 	}
 
 /**

@@ -14,7 +14,7 @@
 //		echo $this->Form->input('Issue');
 		
 		
-//debug($meeting);
+// debug($meeting);
 	?>
 	<h3>Attendees</h3>
 	<a href="#" onclick="window.open('<?php echo $this->Html->url(array('controller'=>'attendees','action'=>'popup',$meeting['Meeting']['id'])); ?>',
@@ -45,14 +45,30 @@
 	<table>
 		<tr><th>Topic</th><th>Description</th><th></th></tr>
 		<?php
-		  foreach ($meeting['Issue'] as $i) {
-			 echo '<tr>';
-			 echo '<td>'.$topics[$i['topic_id']].'</td>';
-			 echo '<td>'.nl2br($i['description']).'</td>';
-			 echo '<td class="actions">';
-			 echo $this->Html->link(__('Details'), array('controller'=>'issues','action' => 'view', $i['id']));
-			 echo $this->Html->link(__('Remove'), array('controller'=>'issues','action' => 'removefrommeeting', $i['IssuesMeeting']['id']));
-			 echo '</td>';
+		$row=0;
+		foreach ($meeting['Issue'] as $i) {
+			echo '<tr>';
+			echo '<td>'.$topics[$i['topic_id']].'</td>';
+			echo '<td>'.nl2br($i['description']).'</td>';
+			echo '<td class="actions">';
+			echo $this->Html->link(__('Details'), array('controller'=>'issues','action' => 'view', $i['id']));
+			echo $this->Html->link(__('Remove'), array('controller'=>'issues','action' => 'removefrommeeting', $i['IssuesMeeting']['id']));
+			echo '</td>';
+			echo '</tr>';
+			//show attendees for each issue
+			echo '<tr id="row'.$row++.'">';
+			echo '<td></td><td>';
+			foreach ($meeting['Attendee'] as $a) {
+				//show all attendees
+				$inputname='AttendeesIssue.'.$i['id'].'.'.$a['id'].'.rank';
+// 				echo $a['firstName'].' '.$a['lastName'].'<table style="margin:0;width:20px;display:inline;"><tr>';
+// 				for ($ii=0; $ii<3; $ii++) echo '<td style="padding:0;border:none;"><div class="tdBox">'.$this->Html->image('offstar.png',
+// 					array('class'=>'L1','url'=>"javascript:rating(".($ii+1).")",'style'=>'position:relative;')).$this->Html->image('onstar.png',
+// 					array('class'=>'L1','url'=>"javascript:rating(".($ii+1).")",'id'=>'on',
+// 					'style'=>''.(($this->Form->value($inputname)>$ii ? '' : 'display:none;')))).'</div></td>';
+// 				echo '</tr></table><br>';
+				echo $this->Form->input($inputname,array('label'=>'','before'=>$a['firstName'].' '.$a['lastName'],'max'=>3,'min'=>0));
+			}
 			 echo '</tr>';
 		  }
 		?>
@@ -63,3 +79,8 @@
 </div>
 <?php echo $this->element('menu'); ?>
 <script type='text/javascript'>document.getElementById('ln').focus();</script>
+<?php echo $this->Html->script(array('jquery-1.6.4.min','ratingstars.js'));?>
+<style type='text/css'>
+.tdBox { position:relative; padding:0; margin:0; }
+.L1 { position:absolute; width:20px; top:0px; left:0px; z-index:1; }
+</style>
