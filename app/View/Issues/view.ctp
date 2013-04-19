@@ -1,5 +1,7 @@
 <div class="issues view">
-  <h2><?php  echo __('Issue');?></h2>
+	<h2><?php  echo __('Issue');?></h2>
+	<?php echo $this->Html->link(__('Notifications'),array('controller'=>'notifications','action'=>'edit',$issue['Issue']['id']),
+		array('title'=>'Click Here to edit your notifications for this issue')); ?><br>
 	 <dl>
 		  <dt><?php echo __('Id'); ?></dt>
 		  <dd>
